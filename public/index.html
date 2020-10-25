@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- fonts -->
+ 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,20 +26,131 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Image Map Maker</title>
   </head>
   <body>
+   
     <noscript>You need to enable JavaScript to run this app.</noscript>
+   <div class="imgmapper">
+     <div class="imgmapper__workplace">
+      <div class="workplace__toolbar toolbar">
+        <div class="app__logo">
+          <img src="/images/imgmapperLogo.png" alt="img mapper">
+        </div>
+        <nav class="tools">
+          <ul class="tools-items">
+            <li class="tool"><img src="/images/tool_icons/circle-tool.png" alt=""></li>
+            
+            <li class="tool active"><img src="/images/tool_icons/rectangle-tool_active.png" alt=""></li>
+
+            <li class="tool"><img src="/images/tool_icons/poly-tool.png" alt=""></li>
+
+            <li class="tool"><img src="/images/tool_icons/move-tool.png" alt=""></li>
+
+          </ul>
+        </nav>
+      </div>
+      <div class="wopkplace__work-img">
+       <div class="work-img__header">
+          <div class="map-name">Map_Name</div>
+          <div class="buttons-wrap">
+            <a href="#" class="btn btn-bordered "><i class="btn-icon gear"></i> Settings</a>
+            <button class="btn btn-solid"><i class="btn-icon codeimg"></i> Get code</button>
+            <button class="btn btn-solid"><i class="btn-icon dload"></i> Get map</button>
+          </div>
+        </div>
+
+        <div class="work-img__img-wrap cursor_rect">
+
+          <img  src="images/menu-example.jpg" alt="sfdas">
+
+        </div>
+
+      </div>
+     </div>
+     <div class="imgmapper__details details">
+      <div class="colump_wrap">
+        <div class="areas">
+          <ul class="areas__list">
+
+            <li class="area-item">
+              1.
+              <i class="list-icon list-circle"></i> 
+              <div class="area-item__name">Circle</div>
+              <div class="area-coords">X:15 Y20 </div>
+              <button><i class="trash"></i> </button>
+            </li>
+
+            <li class="area-item">
+              2. 
+              <i class="list-icon list-square"></i> 
+              <div class="area-item__name">Circle</div>
+              <div class="area-coords">X:1150 Y300 </div>
+              <button><i class="trash"></i> </button>
+            </li>
+
+            <li class="area-item">
+              3.
+              <i class="list-icon list-square"></i> 
+              <div class="area-item__name">Circle</div>
+              <div class="area-coords">X:1150 Y300 </div>
+              <button><i class="trash"></i> </button>
+            </li>
+
+            <li class="area-item">
+              4.
+              <i class="list-icon list-square"></i> 
+              <div class="area-item__name">Circle</div>
+              <div class="area-coords">X:1150 Y300 </div>
+              <button><i class="trash"></i> </button>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="colump_wrap">
+        <div class="area-details">
+         <div class="area__row">
+          <div class="area-name">
+            <div class="area-name__img">
+              <img src="" alt="">
+            </div>
+            <div class="area-name__text">
+              <div class="area-name__title">Circle 1</div>
+              <div class="area-name__type">circle</div>
+            </div>
+          </div>
+          <div class="area__coords">
+            <label > X:<input type="number" step="1"></label>
+            <label > Y:<input type="number" step="1"></label>
+            <label > Radius:<input type="text"  id=""></label>
+          </div> 
+
+         </div>
+        <div class="area__row">
+          <div class="area-options">
+            <label >href</label> <input type="text" >
+            <label >alt </label><input type="text" >
+            <label >target </label>
+            <select >
+              <option value="_self">self</option>
+              <option value="_new">new</option>
+            </select>
+          </div>
+        </div>
+
+
+
+        </div>
+      </div>
+      
+     </div>
+   </div>
+    <!-- Это корневой элемент приложения -->
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
   </body>
 </html>
