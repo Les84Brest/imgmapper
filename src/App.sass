@@ -1,5 +1,5 @@
-@import  '/sass/_vars';
-@import  '/sass/reset.scss';
+@import  '/sass/_vars'
+@import  '/sass/reset.scss'
 /*fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap')
 /*common*/
@@ -7,21 +7,23 @@
 body
   font-family: Montserrat, sans-serif
   font-size: 16px
+input
+  border: none
+
+
+
 
 .imgmapper__workplace
   display: flex
   flex-direction: row
   justify-content: start
 
-
-
-  
 .app__logo
   display: flex
   align-items: center
   justify-content: center
   img
-    margin-top: 10px 
+    margin-top: 10px
 /*toolbar*/
 
 .toolbar
@@ -82,55 +84,171 @@ body
     color: $main
 
 .work-img__img-wrap
-  padding: 20px 
+  padding: 20px
 
 .btn
-  padding: 5px 15px
-  border-radius: 25px
+  padding:
+    left: 5px
+    right: 10px  
+  border-radius: 30px
   display: inline-block
   margin: 0 0 0 30px
   cursor: pointer
   transition: all 0.3s ease
   font-size: 15px
-  line-height: 25px
+  
   &-solid, &-bordered
     transition: all 0.3s ease
   &-solid
     background-color: $main-dark
     color: $accent
-   
+
     font-weight: bold
     border: none
     &:hover
       background-color: #8467be
       color: #dba143
-
-
   &-bordered
     border: 3px solid $main-dark
     background: transparent
     padding:
-      top: 3px
-      bottom: 3px
+    top: 3px
+    bottom: 3px
     font-weight: bold
     color: $main-dark
     text-decoration: none
     a
       text-decoration: none
     &:hover
-      border-color:  #8467be
-      color:  #8467be
+      border-color: #8467be
+      color: #8467be
+
+.btn-icon
+  width: 50px
+  height: 43px
+  display: inline-block
+  position: relative
+  background-image: url('images/settings_icon.png')
+  background-position: center center
+  background-repeat: no-repeat
 
 .cursor_circle
   cursor: url('images/cursors/cursor-circle-tool.png'), pointer
-  
+
 .cursor_rect
   cursor: url('images/cursors/cursor-rect-tool.png'), pointer
 
 .cursor_poly
   cursor: url('images/cursors/cursor-poly-tool.png'), pointer
-  
+
 .cursor_move
   cursor: url('images/cursors/cursor-move-tool.png'), pointer
-  
-.
+
+//bottom of aplication
+.imgmapper__details
+  display: flex
+  flex-direction: row
+  width: 100%
+  display: flex
+  padding: 20px
+  margin-right: -15px
+  align-items: top
+  justify-content: center
+  box-shadow: 0 -4px 4px rgba(0,0,0, 0.2)
+  background-color: $soft-gray
+  .column__wrap
+    border: 1px solid $dark-gray
+    background-color: $details-bg
+    border-radius: 13px
+    flex-grow: 1
+    overflow-x: hidden
+    margin-left: 15px
+
+  .column__title
+    background: $main
+    color: $accent
+    font-weight: bold
+    padding: 5px 10px
+
+  .column__content
+    margin: 10px 15px 10px 15px
+.areas__list
+  border-collapse: collapse
+  width: 100%
+
+.area-item
+  cursor: pointer
+  font-weight: bold
+  color: $main-dark
+  border-bottom: 1px $main solid
+  &:hover
+    background-color: #eeeded
+  .area__number
+
+  .area-item__name
+    text-align: left
+  .area__coords
+  .area__icon
+.area-item__delete
+  border: none
+  background: transparent
+.area-item__delete-icon
+  display: block
+  width: 30px
+  height: 30px
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 30px
+    height: 30px
+    background-image: url('images/icon_trash.png')
+    background-position: center center
+.list-icon
+  display: block
+  width: 25px
+  height: 25px
+  position: relative
+  &.list-circle
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 25px
+      height: 25px
+      background-image: url('images/list_component_icons/list_circle_icon.png')
+      background-position: center center
+
+  /*Area deital*/
+.area-details
+  display: flex
+  flex-flow: column wrap
+  color: $main
+  font-weight: bold
+  label
+    display: inline-block
+    margin-right: 5px
+.area-name
+  display: flex
+  flex-direction: row
+  justify-content: start
+  &__title
+    font-size: 22px
+  &__type 
+    font-weight: normal
+    font-size: 16px
+.input__text
+  font-weight: normal
+  border-bottom:  2px solid $main
+  text-align: center
+  color: $main
+.text-align-left
+  text-align: left
+.input-control
+  display: block
+  margin: 5px 0 
+
+
