@@ -70,7 +70,7 @@ input
 
 .work-img__header
   width: 100%
-  height: 60px
+  height: 70px
   display: flex
   padding: 0 45px
   margin-bottom: 10px
@@ -88,10 +88,13 @@ input
 
 .btn
   padding:
+    top: 3px
+    bottom: 3px
     left: 5px
     right: 10px  
   border-radius: 30px
-  display: inline-block
+  display: inline-flex
+  align-items: center
   margin: 0 0 0 30px
   cursor: pointer
   transition: all 0.3s ease
@@ -102,7 +105,6 @@ input
   &-solid
     background-color: $main-dark
     color: $accent
-
     font-weight: bold
     border: none
     &:hover
@@ -112,8 +114,8 @@ input
     border: 3px solid $main-dark
     background: transparent
     padding:
-    top: 3px
-    bottom: 3px
+      top: 1px
+      bottom: 1px
     font-weight: bold
     color: $main-dark
     text-decoration: none
@@ -128,9 +130,15 @@ input
   height: 43px
   display: inline-block
   position: relative
-  background-image: url('images/settings_icon.png')
   background-position: center center
   background-repeat: no-repeat
+.gear  
+  background-image: url('images/settings_icon.png')
+.codeimg
+  background-image: url('images/download_map_icon.png')
+.dload
+  background-image: url('images/download_code_icon.png')
+
 
 .cursor_circle
   cursor: url('images/cursors/cursor-circle-tool.png'), pointer
