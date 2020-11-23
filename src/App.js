@@ -1,12 +1,21 @@
 import './App.sass';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { Fragment } from 'react';
+import WorkPlace from './components/WorkPlace';
+import Details from './components/Details';
+import { createStore } from 'redux';
+import rootReducer from './store/reducers';
+import { Provider } from 'react-redux';
+
+const store = createStore(rootReducer);
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="imgmapper">
+      <Provider store={store}>
+        {/* header toolbar area to work with image */}
+        <WorkPlace />
+        {/* footer of app with details of primitives */}
+        <Details />
+      </Provider>
     </div>
   );
 }

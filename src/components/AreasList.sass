@@ -1,0 +1,51 @@
+@import '../sass/_vars'
+.areas__list
+  border-collapse: collapse
+  width: 100%
+
+.area-item
+  cursor: pointer
+  font-weight: bold
+  color: $main-dark
+  border-bottom: 1px $main solid
+  &:hover
+    background-color: #eeeded
+  .area__number
+
+  .area-item__name
+    text-align: left
+  .area__coords
+  .area__icon
+.area-item__delete
+  border: none
+  background: transparent
+.area-item__delete-icon
+  display: block
+  width: 30px
+  height: 30px
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 30px
+    height: 30px
+    background-image: url('../images/icon_trash.png')
+    background-position: center center
+
+.list-icon
+  display: block
+  width: 25px
+  height: 25px
+  position: relative
+  &.list-circle
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 25px
+      height: 25px
+      background-image: url('../images/list_component_icons/list_circle_icon.png')
+      background-position: center center

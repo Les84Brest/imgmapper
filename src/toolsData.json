@@ -1,0 +1,4 @@
+[ {"name":  "circle",  "toolId": 1,  "imagePath":"../images/tool_icons/circle-tool"},
+  {"name":  "rectange",  "toolId": 2,  "imagePath":"../images/tool_icons/rectangle-tool"},
+  {"name":  "poly",  "toolId": 3,  "imagePath":"../images/tool_icons/poly-tool"},
+  {"name":  "move",  "toolId": 4,  "imagePath":"../images/tool_icons/move-tool"}]

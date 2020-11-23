@@ -1,0 +1,29 @@
+@import '../sass/_vars'
+
+.tool
+  width: 100%
+  display: flex
+  margin-bottom: 5px
+  justify-content: center
+  align-items: center
+  text-align: center
+  cursor: pointer
+  
+  &:hover
+    background-color: $main-light
+    
+  &.active 
+    background-color: $main-dark
+    position: relative
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      top: 0
+      width: 5px
+      height: 100%
+      background-color: $accent
+
+.active
+  background-color: $main-dark
+  boder-left: 5px solid $accent

@@ -1,0 +1,53 @@
+@import '../../sass/_vars'
+.btn
+  padding:
+    top: 3px
+    bottom: 3px
+    left: 5px
+    right: 10px  
+  border-radius: 30px
+  display: inline-flex
+  align-items: center
+  margin: 0 0 0 30px
+  cursor: pointer
+  transition: all 0.3s ease
+  font-size: 15px
+  
+  &-solid, &-bordered
+    transition: all 0.3s ease
+  &-solid
+    background-color: $main-dark
+    color: $accent
+    font-weight: bold
+    border: none
+    &:hover
+      background-color: #8467be
+      color: #dba143
+  &-bordered
+    border: 3px solid $main-dark
+    background: transparent
+    padding:
+      top: 1px
+      bottom: 1px
+    font-weight: bold
+    color: $main-dark
+    text-decoration: none
+    a
+      text-decoration: none
+    &:hover
+      border-color: #8467be
+      color: #8467be
+
+.btn-icon
+  width: 50px
+  height: 43px
+  display: inline-block
+  position: relative
+  background-position: center center
+  background-repeat: no-repeat
+.gear  
+  background-image: url('../../images/settings_icon.png')
+.codeimg
+  background-image: url('../../images/download_map_icon.png')
+.dload
+  background-image: url('../../images/download_code_icon.png')
