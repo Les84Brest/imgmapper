@@ -1,4 +1,4 @@
-import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_GET_FIGURE_NUMBER } from '../../constants';
+import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER } from '../../constants';
 
 export const addSvgFigure = (figure) => ({
   type: SVG_ADD_FIGURE,
@@ -10,7 +10,7 @@ export const  deleteSvgFigure = (id) => ({
   payload: id,
 })
 //get figure id 
-export const getFigureNumber = () => ({
-  type: SVG_GET_FIGURE_NUMBER,
-  
+export const updateMaxId = (number) => ({
+  type: SVG_UPDATE_FIGURE_NUMBER,
+  payload: number++,  
 })

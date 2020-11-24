@@ -3,7 +3,7 @@
 /*SVG Canvas actions*/
 export const SVG_ADD_FIGURE = 'SVG_ADD_FIGURE';
 export const SVG_DELETE_FIGURE = 'SVG_DELETE_FIGURE';
-export const SVG_GET_FIGURE_NUMBER = 'SVG_GET_FIGURE_NUMBER';
+export const SVG_UPDATE_FIGURE_NUMBER = 'SVG_UPDATE_FIGURE_NUMBER';
 
 
 /* figures type */

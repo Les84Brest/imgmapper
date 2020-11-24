@@ -1,14 +1,15 @@
-import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_GET_FIGURE_NUMBER } from '../../constants';
-import { FIGURE_RECT,   FIGURE_CIRCLE,  FIGURE_POLYGON} from '../../constants';
+import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, FIGURE_RECT,   FIGURE_CIRCLE,  FIGURE_POLYGON } from '../../constants';
+
 
 const defaultState = {
   figureId: 1,
+  currentTool: FIGURE_RECT,
   figuresList: [
     {figureType: FIGURE_RECT,
-    x: 15,
-    y: 50,
-    width: 30,
-    height: 150,
+    x1: 100,
+    y1: 115,
+    x2: 30,
+    y2: 20,
   },
 
   {figureType: FIGURE_CIRCLE,
@@ -18,7 +19,7 @@ const defaultState = {
   },
 
   {figureType: FIGURE_POLYGON,
-    points: "50 160 55 180 70 180 60 190",
+    points: "50 160 55 180 70 180 60 190 30 40 80 70",
     
   },
 
@@ -43,9 +44,8 @@ export const svgCanvasReducer = (state = defaultState, action ) => {
       figures.splice(action.payload, 1);
       return {...state, figuresList: figures};
       
-    case SVG_GET_FIGURE_NUMBER:
-      let lastNumber = state.figureId + 1;
-      return {...state, figureNumber: lastNumber};
+    case SVG_UPDATE_FIGURE_NUMBER:
+      return {...state, figureNumber: action.payload};
     default:
       return state;
 

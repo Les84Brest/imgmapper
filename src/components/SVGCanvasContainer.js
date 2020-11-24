@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SVGCanvas from './SVGCanvas';
-import {addSvgFigure, deleteSvgFigure, getFigureNumber } from '../store/svgcanvas/actions';
+import {addSvgFigure, deleteSvgFigure, updateMaxId } from '../store/svgcanvas/actions';
 
 
 class SVGCanvasContainer extends React.Component{
 
   state = {
-   
+    currentTool: '',
   }
 
   /**Prop Types  */
@@ -16,13 +16,11 @@ class SVGCanvasContainer extends React.Component{
 
   }
 
-  someHandler = () => {
-    //some code
-  }
+  
 
 
   render() {
-    console.log("Пропсы", this.props);
+    
     return (
       <SVGCanvas {...this.props} />
     )
@@ -33,10 +31,11 @@ const mapStateToProps = state => {
   return {
     figureId: state.svgCanvas.figureId,
     figuresList:  state.svgCanvas.figuresList,
+    curentTool: state.svgCanvas.currentTool
   }
 }
 const mapDispatchProps = {
-  addSvgFigure, deleteSvgFigure, getFigureNumber, 
+  addSvgFigure, deleteSvgFigure, updateMaxId, 
 }
 
 export default connect(mapStateToProps, mapDispatchProps)(SVGCanvasContainer);

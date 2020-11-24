@@ -1,24 +1,38 @@
-import React, { useState, useEffect, Children, Component } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
 
 
-const FigureControl = (x, y, cbChangeCoords) => {
 
-	
+const FigureControl = ({x, y, cbChangeCoords, visible}) => {
+
+  
+  const [coordX, setCoordX] = useState(x);
+  const [coordY, setCoordY] = useState(y);
+
+	const handleMouseClick = (event) => {
+    event.stopPropagation(); // отменяем всплытие
+    let coords = event.target.getBoundingClientRect(); 
+    setCoordX(event.clientX );
+    setCoordY(event.clientY );
+  }
 
 	return (
-		<circle cx={x} cy={y}  r={5}  stroke="gray" fill="PaleGreen" stroke-width="1"  />
+    {visible} &&
+      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5" onClick={handleMouseClick} />
+    
 	);
 };
 
 FigureControl.propTypes = {
   x: PropTypes.number,
   y:PropTypes.number,
-  cbChangeCoords: PropTypes.func
+  cbChangeCoords: PropTypes.func,
+  visible: PropTypes.bool,
   
 };
 
-
+FigureControl.defaultProps = {
+  visible: false,
+}
 
 export default FigureControl;
