@@ -61,32 +61,48 @@ export default class SVGCanvas extends React.Component {
     }
   }
 
-  handleMouseDown = (e) => {
-    console.log('coords client', e.clientX, e.clientY);
-    console.log('coords page', e.pageX, e.pageY);
+  addNewFigureToState = (newFigure) => {
+
+    let newFiguresList = [...this.state.figures, newFigure]
+    let newFigureId = this.state.figureId;
+    newFigureId++;
+    // добавляем в фигуры новую фигуру и устанавливаем ее как текущую фигуру с которой идет работа
+    this.setState({ figures: newFiguresList, firstClick: null, figureId: newFigureId });
+
+  }
+
+  handleMouseClick = (e) => {
+    e.stopPropagation();
+
     let svgRect = e.target.getBoundingClientRect(); // получаем прямоугольник под SVG холстом
-    console.log('svg rectangle coords', svgRect);
+
     if (this.state.firstClick == null) {
-      this.setState({ firstClick: {x: e.clientX - svgRect.left, y: e.clientY - svgRect.top} }); //устанавливаем первый клик
-      console.log('сработало');
+      this.setState({ firstClick: { x: e.clientX - svgRect.left, y: e.clientY - svgRect.top } }); //устанавливаем первый клик
+
     } else {
-      let newFigure = null;
+      
 
       switch (this.props.curentTool) {
 
         case FIGURE_RECT:
-          newFigure = <RectSvg
-            x1={this.state.firstClick.x }
+
+          this.addNewFigureToState(<RectSvg
+            x1={this.state.firstClick.x}
             y1={this.state.firstClick.y}
             x2={e.clientX - svgRect.left}
             y2={e.clientY - svgRect.top}
-            key={this.state.figureId} />;
+            key={this.state.figureId} />);
 
-          let newFiguresList = [...this.state.figures, newFigure]
-          let newFigureId = this.state.figureId;
-          newFigureId++;
-          // добавляем в фигуры новую фигуру и устанавливаем ее как текущую фигуру с которой идет работа
-          this.setState({ figures: newFiguresList, firstClick: null, figureId: newFigureId });
+          break;
+        case FIGURE_CIRCLE:
+
+          this.addNewFigureToState( <CircleSvg
+            x1={this.state.firstClick.x}
+            y1={this.state.firstClick.y}
+            x2={e.clientX - svgRect.left}
+            y2={e.clientY - svgRect.top}
+            key={this.state.figureId} /> );
+
           break;
         default: return null;
       }
@@ -106,7 +122,7 @@ export default class SVGCanvas extends React.Component {
 
     return (
       <div className="svg-canvas">
-        <svg width="500" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg" onMouseDown={this.handleMouseDown} >
+        <svg width="500" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg" onClick={this.handleMouseClick} >
           {this.state.figures}
         </svg>
       </div>

@@ -10,15 +10,21 @@ const FigureControl = ({x, y, cbChangeCoords, visible}) => {
   const [coordY, setCoordY] = useState(y);
 
 	const handleMouseClick = (event) => {
+    console.log('Mouse Click Control');
     event.stopPropagation(); // отменяем всплытие
-    let coords = event.target.getBoundingClientRect(); 
-    setCoordX(event.clientX );
-    setCoordY(event.clientY );
+    // let coords = event.target.getBoundingClientRect(); 
+    setCoordX(coordX + 4);
+    setCoordY(coordY + 5 );
+    
+  }
+  const handleMouseUp = event => {
+    event.stopPropagation();
+    
   }
 
 	return (
-    {visible} &&
-      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5" onClick={handleMouseClick} />
+   
+      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5" onClick={handleMouseClick}  />
     
 	);
 };

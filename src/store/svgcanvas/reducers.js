@@ -3,7 +3,7 @@ import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, FIGURE_REC
 
 const defaultState = {
   figureId: 1,
-  currentTool: FIGURE_RECT,
+  currentTool: FIGURE_CIRCLE,
   figuresList: [
     {figureType: FIGURE_RECT,
     x1: 100,
