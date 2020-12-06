@@ -13,8 +13,14 @@ export const FIGURE_CIRCLE = 'FIGURE_CIRCLE';
 export const FIGURE_POLYGON= 'FIGURE_POLYGON';
 
 /* tools */
-
+// возможно нужно удалить. Хватит и фигур
 export const RECT_TOOL = 'RECT_TOOL';
 export const CIRCLE_TOOL = 'CIRCLE_TOOL';
 export const POLY_TOOL = 'POLY_TOOL';
 export const MOVE_TOOL = 'MOVE_TOOL';
+
+/* svg work mode */
+
+export const MODE_SHOW = 'MODE_SHOW';
+export const MODE_DRAWING = 'MODE_DRAWING'; 
+export const MODE_EDIT = 'MODE_EDIT'; 

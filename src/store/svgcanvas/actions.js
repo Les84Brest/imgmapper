@@ -9,8 +9,17 @@ export const  deleteSvgFigure = (id) => ({
   type: SVG_DELETE_FIGURE,
   payload: id,
 })
+
 //get figure id 
-export const updateMaxId = (number) => ({
-  type: SVG_UPDATE_FIGURE_NUMBER,
-  payload: number++,  
-})
+export const updateMaxId = (number) =>{ 
+  number++;
+ 
+  let action = {
+    type: SVG_UPDATE_FIGURE_NUMBER,
+    payload: number,
+  }
+  
+
+  return action;
+}
+

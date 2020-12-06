@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 //css import
 import './MainToolbar.sass';
+import { computeHeadingLevel } from '@testing-library/react';
 
 class MainToolbar extends React.PureComponent {
 
@@ -15,37 +16,45 @@ class MainToolbar extends React.PureComponent {
     super(props);
     // tools icons list
 
-    this.state.toolsInfo = props.toolsList;
+    this.state = {
+      toolsInfo: props.toolsList,
+    } 
 
-  }
-
-
-  state = {
-    toolsInfo: [],
   }
 
   cbSelectTool = (id) => {
+    
+    let newToolsList = this.state.toolsInfo.slice();
 
-    let newTools = this.state.toolsInfo.map((item) => {
+    for (let i = 0; i < newToolsList.length; i++) {
+     if(newToolsList[i].id === id){
+       console.log('item - ', newToolsList[i]);
+       console.log('match');
+       break;
+     }
+      
+    }
+
+    // let newTools = this.state.toolsInfo.map((item) => {
       
       
-      if(item.toolId === id){
-        let activeTool = Object.assign({}, item);
-        activeTool.active = true;
-        item = activeTool;
-        return item;
-      }else if(item.active === true){
-        let activeTool = Object.assign({}, item);
-        activeTool.active = false;
-        item = activeTool;
-        return item;
-      }
+    //   if(item.toolId === id){
+    //     let activeTool = Object.assign({}, item);
+    //     activeTool.active = true;
+    //     item = activeTool;
+    //     return item;
+    //   }else if(item.active === true){
+    //     let activeTool = Object.assign({}, item);
+    //     activeTool.active = false;
+    //     item = activeTool;
+    //     return item;
+    //   }
       
 
-      return item;
-    });
+    //   return item;
+    // });
 
-    this.setState({toolsInfo: newTools});
+    // this.setState({toolsInfo: newTools});
     
     // let activeToolIndex = this.state.toolsInfo.findIndex((val) => val.toolId === id);
 
@@ -78,6 +87,7 @@ class MainToolbar extends React.PureComponent {
 
     let toolList = [];
     this.state.toolsInfo.forEach(item => {
+      
       toolList.push(
         <ToolIcon
           key={item.toolId}
@@ -90,10 +100,12 @@ class MainToolbar extends React.PureComponent {
       );
     })
 
+    
+
     return (
       <div className="workplace__toolbar toolbar">
         <div className="app__logo">
-          <Image src="../images/imgmapperLogo.png" />
+          <a href="https://github.com/Les84Brest/imgmapper" target="blank"><Image src="../images/imgmapperLogo.png" /></a>
         </div>
         <nav className="tools">
           <ul className="tools-items">

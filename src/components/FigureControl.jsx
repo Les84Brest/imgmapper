@@ -17,14 +17,11 @@ const FigureControl = ({x, y, cbChangeCoords, visible}) => {
     setCoordY(coordY + 5 );
     
   }
-  const handleMouseUp = event => {
-    event.stopPropagation();
-    
-  }
+ 
 
 	return (
    
-      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5" onClick={handleMouseClick}  />
+      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5"  />
     
 	);
 };
