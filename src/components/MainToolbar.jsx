@@ -15,57 +15,33 @@ class MainToolbar extends React.PureComponent {
   constructor(props) {
     super(props);
     // tools icons list
+    console.log('начало', props);
+     
+    
 
-    this.state = {
-      toolsInfo: props.toolsList,
-    } 
+    this.state= { 
+      toolsInfo: props.toolsList
+    };
 
+    // this.state = {toolsInfo : props.toolsList.map(item => {
+    //   item.active = false;
+    //   return item;
+    // })} ;
   }
 
   cbSelectTool = (id) => {
+    console.log('callback ', id);
+    let newToolsInfo = this.state.toolsInfo.slice();
+   
+    newToolsInfo.forEach(item => {
+      if (item.id === id) {
+        item.active = true;
+      }
+    });
     
-    let newToolsList = this.state.toolsInfo.slice();
+    this.setState({toolsInfo: newToolsInfo});
 
-    for (let i = 0; i < newToolsList.length; i++) {
-     if(newToolsList[i].id === id){
-       console.log('item - ', newToolsList[i]);
-       console.log('match');
-       break;
-     }
-      
-    }
-
-    // let newTools = this.state.toolsInfo.map((item) => {
-      
-      
-    //   if(item.toolId === id){
-    //     let activeTool = Object.assign({}, item);
-    //     activeTool.active = true;
-    //     item = activeTool;
-    //     return item;
-    //   }else if(item.active === true){
-    //     let activeTool = Object.assign({}, item);
-    //     activeTool.active = false;
-    //     item = activeTool;
-    //     return item;
-    //   }
-      
-
-    //   return item;
-    // });
-
-    // this.setState({toolsInfo: newTools});
     
-    // let activeToolIndex = this.state.toolsInfo.findIndex((val) => val.toolId === id);
-
-    // let activeTool = Object.assign({}, this.state.toolsInfo[activeToolIndex]);
-
-    // activeTool.active = true;
-
-    // let newTools = this.state.toolsInfo.slice();
-    // newTools.splice(activeToolIndex,1, activeTool);
-    // this.set
-
   }
 
   /**Prop Types  */
@@ -112,10 +88,6 @@ class MainToolbar extends React.PureComponent {
             {toolList}
           </ul>
         </nav>
-
-
-
-
 
       </div>
     )

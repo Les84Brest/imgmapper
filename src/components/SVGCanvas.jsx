@@ -94,9 +94,7 @@ export default class SVGCanvas extends React.Component {
     let svgRect = e.target.getBoundingClientRect(); // получаем прямоугольник под SVG холстом
     this.props.cbMouseMove(Math.floor(e.clientX - svgRect.left), Math.floor(e.clientY - svgRect.top), ctrlKey );
 
-    
   }
-
 
 
   render() {
@@ -107,7 +105,7 @@ export default class SVGCanvas extends React.Component {
 
     return (
       <div className="svg-canvas">
-        <svg width="500" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg" onClick={this.handleMouseClick} onMouseMove={this.handleMouseMove} onKeyDown >
+        <svg width="500" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg" onClick={this.handleMouseClick} onMouseMove={this.handleMouseMove}  >
           {figures}
         </svg>
       </div>

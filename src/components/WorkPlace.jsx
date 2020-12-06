@@ -13,6 +13,7 @@ const WorkPlace = () => {
 
   
   const toolsData = require('../toolsData.json');
+  
 
     return (
       <div className="imgmapper__workplace">
