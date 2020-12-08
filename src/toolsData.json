@@ -1,4 +1,5 @@
-[ {"name":  "circle",  "toolId": 1,  "imagePath":"../images/tool_icons/circle-tool"},
-  {"name":  "rectange",  "toolId": 2,  "imagePath":"../images/tool_icons/rectangle-tool"},
-  {"name":  "poly",  "toolId": 3,  "imagePath":"../images/tool_icons/poly-tool"},
-  {"name":  "move",  "toolId": 4,  "imagePath":"../images/tool_icons/move-tool"}]
+[ {"name":  "CIRCLE_TOOL",  "toolId": 1,  "imagePath":"../images/tool_icons/circle-tool"},
+  {"name":  "RECT_TOOL",  "toolId": 2,  "imagePath":"../images/tool_icons/rectangle-tool"},
+  {"name":  "POLY_TOOL",  "toolId": 3,  "imagePath":"../images/tool_icons/poly-tool"},
+  {"name":  "MOVE_TOOL",  "toolId": 4,  "imagePath":"../images/tool_icons/move-tool"}]
+ 

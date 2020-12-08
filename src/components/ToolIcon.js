@@ -11,7 +11,6 @@ import './ToolIcon.sass';
 
 const ToolIcon = ({
   onClick,
-  toolName,
   id,
   image,
   active }) => {
@@ -21,11 +20,17 @@ const ToolIcon = ({
     'tool',
     { active },
   );
+  
+// настраиваем изображение в случае, если инструмент активный
+  const iconImage = active ? image + '_active' : image;
 
-    console.log(id);
+  const handleOnClick = () => {
+    onClick(id);
+  }
+    
   return (
-  <li className={classes} onClick={() => { onClick(id) }} >
-      <Image src={`${image}.png`} />
+  <li className={classes} onClick={handleOnClick} >
+      <Image src={`${iconImage}.png`} />
     </li>
   )
 };

@@ -32,7 +32,7 @@ export const withDrawPoly = (svgProps) => SVGCanvas => {
           let newFigure = {
             figureType: FIGURE_POLYGON,
             points: [x, y],
-            figureId: `poly-${this.state.figureId}`,
+            id: `poly-${this.state.figureId}`,
             key: this.state.figureId
           };
           // пока добавляем фигуру в список для SVGCanvas

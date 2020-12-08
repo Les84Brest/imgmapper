@@ -1,4 +1,5 @@
 import React from 'react';
+import AreaListItem from './AreaListItem';
 
 
 
@@ -19,10 +20,7 @@ class AreasList extends React.PureComponent {
 
   }
 
-  someHandler = () => {
-    //some code
-  }
-
+  
 
   render() {
 
@@ -60,7 +58,7 @@ class AreasList extends React.PureComponent {
               </td>
             </tr>
 
-
+          <AreaListItem name="otherName" number={333} key="1"/>
           </tbody>
         </table>
       </div>

@@ -8,16 +8,17 @@ import PropTypes from 'prop-types';
 //css import
 import './WorkPlace.sass';
 import SVGCanvasContainer from './SVGCanvasContainer';
+import MainToolbarContainer from './MainToolbarContainer';
 
 const WorkPlace = () => {
 
   
-  const toolsData = require('../toolsData.json');
+  // const toolsData = require('../toolsData.json');
   
 
     return (
       <div className="imgmapper__workplace">
-        <MainToolbar toolsList={toolsData}/>  
+        <MainToolbarContainer />  
         <div className="wopkplace__work-img">
         <Header/>
         <MapImage/>

@@ -1,4 +1,4 @@
-import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER } from '../../constants';
+import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, SVG_CHANGE_TOOL, SVG_UPDATE_FIGURE } from '../../constants';
 
 export const addSvgFigure = (figure) => ({
   type: SVG_ADD_FIGURE,
@@ -10,6 +10,12 @@ export const  deleteSvgFigure = (id) => ({
   payload: id,
 })
 
+// обновить данные фигуры
+export const  updateSvgFigure = (figure) => ({
+  type: SVG_UPDATE_FIGURE,
+  payload: figure,
+})
+
 //get figure id 
 export const updateMaxId = (number) =>{ 
   number++;
@@ -18,7 +24,15 @@ export const updateMaxId = (number) =>{
     type: SVG_UPDATE_FIGURE_NUMBER,
     payload: number,
   }
-  
+
+  return action;
+}
+// изменение текущего инструмента рисования, редактирования
+export const changeTool = (tool) => {
+  const action = {
+    type: SVG_CHANGE_TOOL,
+    payload: tool,
+  }
 
   return action;
 }
