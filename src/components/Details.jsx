@@ -5,7 +5,7 @@ import React from 'react';
 //css import
 import './Details.sass';
 
-import AreasList from './AreasList';
+import AreasListContainer from './AreaListContainer';
 import AreaDetails from './AreaDetails';
 
 class Details extends React.Component {
@@ -32,7 +32,7 @@ class Details extends React.Component {
 
     return (
       <div className="imgmapper__details">
-        <AreasList />
+        <AreasListContainer />
         <AreaDetails />
       </div>
     )

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
 
-const AreaListItem = ({ name, number }) => {
+const AreaListItem = ({ name, number, id }) => {
   //use State if it's need
   const [items, setItems] = useState('');
   // feature if need
@@ -19,7 +19,7 @@ const AreaListItem = ({ name, number }) => {
 
   return (
     <tr className="area-item">
-      <td className="area__number">{number}</td>
+      <td className="area__number">{number}.</td>
       <td className="area__icon">
         <i className={iconClass}></i>
       </td>
@@ -37,7 +37,7 @@ const AreaListItem = ({ name, number }) => {
 AreaListItem.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
-
+  id: PropTypes.string,
 };
 
 AreaListItem.defaultProps = {
