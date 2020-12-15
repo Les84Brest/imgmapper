@@ -1,0 +1,30 @@
+@import '../../sass/_vars'
+.select
+  display: inline-block
+  box-sizing: border-box
+  width: 30%
+  position: relative
+  cursor: pointer
+  font-weight: normal
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    width: 30px
+    height: 100%
+    border: 1 tomato solid
+    background: #777
+  &__checked
+    border-bottom: 2px
+    border-bottom:  2px solid $main
+  &__option
+    cursor: pointer
+    border-bottom: 1px solid $main
+  &__dropdown
+    position: absolute
+    width: 100%
+    left: 0
+    top: 30px
+    background: white
+    list-style: none

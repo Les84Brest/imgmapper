@@ -1,32 +1,54 @@
 import React, { useState, useEffect, Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
+import { FIGURE_CIRCLE, FIGURE_POLYGON, FIGURE_RECT } from '../constants';
 
 
-const AreaListItem = ({ name, number, id }) => {
-  //use State if it's need
-  const [items, setItems] = useState('');
-  // feature if need
-  const classes = 123;
-
-
-  const handleDeleteArea = () => {
-    console.log('удаляем фигуру');
-  };
-
-  const iconClass = ClassNames('list-icon', 'list-circle');
-  const areaCoords = 'X:15 Y:20 R: 150';
-
+const AreaListItem = ({ areaInfo,  number,  onClick}) => {
+  
+  let iconClass = null ;
+  let areaCoords = null;
+  switch(areaInfo.figureType){
+    case FIGURE_CIRCLE:
+      const circleRadius = Math.floor(Math.sqrt(Math.pow(areaInfo.x2 - areaInfo.x1, 2) + Math.pow(areaInfo.y2 - areaInfo.y1, 2)))
+      areaCoords = `x1: ${areaInfo.x1}, y1: ${areaInfo.y1}, r: ${circleRadius}`;
+      iconClass = ClassNames('list-icon', 'list-circle');
+      
+      break;      
+    case FIGURE_POLYGON:
+      areaCoords = `x1: ${areaInfo.points[0]}, y1: ${areaInfo.points[1]}, x2: ${areaInfo.points[2]}, y2: ${areaInfo.points[3]} ...`
+      iconClass = ClassNames('list-icon', 'list-poly');
+      break;
+    case FIGURE_RECT:
+      areaCoords = `x1: ${areaInfo.x1}, y1: ${areaInfo.y1}, x2: ${areaInfo.x2}, y2: ${areaInfo.y2}`;
+      iconClass = ClassNames('list-icon', 'list-rect');
+      break;
+  }
+  
+  
+  
+  
+  const getFigureType = (name) => {
+    switch(name){
+      case FIGURE_CIRCLE:
+        return 'Circle';
+      case FIGURE_POLYGON:
+        return 'Poly';
+      case FIGURE_RECT:
+        return 'Rect';
+    }
+    return '';
+  }
   return (
     <tr className="area-item">
       <td className="area__number">{number}.</td>
       <td className="area__icon">
         <i className={iconClass}></i>
       </td>
-      <td className="area-item__name">{name}</td>
+      <td className="area-item__name">{getFigureType(areaInfo.figureType)}</td>
       <td className="area__coords">{areaCoords}</td>
       <td>
-        <button className="area-item__delete" onClick={handleDeleteArea}>
+        <button className="area-item__delete" onClick={() => {onClick(areaInfo.id)}}>
           <i className="area-item__delete-icon"></i>
         </button>
       </td>
@@ -35,13 +57,14 @@ const AreaListItem = ({ name, number, id }) => {
 };
 
 AreaListItem.propTypes = {
-  children: PropTypes.node,
+  areaInfo: PropTypes.array,
   onClick: PropTypes.func,
-  id: PropTypes.string,
+  number: PropTypes.number,
+  
 };
 
 AreaListItem.defaultProps = {
-  children: 'DefaultButton',
+  number: 99,
   onClick: () => { },
 
 };

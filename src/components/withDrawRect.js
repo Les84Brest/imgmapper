@@ -42,6 +42,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             key: this.state.figureId
           }
           svgProps.addSvgFigure(newFigure);
+          svgProps.setCurrentFigureId(`rect-${this.state.figureId}`);
           svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
           this.setState({
             curentFigureId: null,

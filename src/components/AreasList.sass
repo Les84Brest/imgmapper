@@ -11,11 +11,12 @@
   &:hover
     background-color: #eeeded
   .area__number
-
+    text-align: center
   .area-item__name
     text-align: left
   .area__coords
   .area__icon
+    width: 30px
 .area-item__delete
   border: none
   background: transparent
@@ -58,4 +59,14 @@
       width: 25px
       height: 25px
       background-image: url('../images/list_component_icons/list_rect_icon.png')
+      background-position: center center
+  &.list-poly
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 25px
+      height: 25px
+      background-image: url('../images/list_component_icons/list_poly_icon.png')
       background-position: center center

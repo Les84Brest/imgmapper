@@ -55,6 +55,7 @@ export const withDrawPoly = (svgProps) => SVGCanvas => {
           if (ctrlKey){ //создание фигуры завершено сохраняем ее
             svgProps.addSvgFigure(newFigure);
             svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
+            svgProps.setCurrentFigureId(`poly-${this.state.figureId}`);
             this.setState({startDrawing: false, currentPoly: null});
             return;
           }else{// продолжаем рисование фигуры

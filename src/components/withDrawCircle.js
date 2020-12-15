@@ -43,6 +43,7 @@ export const withDrawCircle = (svgProps) => SVGCanvas => {
           }
           svgProps.addSvgFigure(newCircle);
           svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
+        svgProps.setCurrentFigureId(`circle-${this.state.figureId}`);
           this.setState({
             curentFigureId: null,
             firstPoint: null,

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import SVGCanvas from './SVGCanvas';
-import {addSvgFigure, deleteSvgFigure, updateMaxId } from '../store/svgcanvas/actions';
+import {addSvgFigure, deleteSvgFigure, setCurrentFigureId, updateMaxId } from '../store/svgcanvas/actions';
 import { withDrawCircle } from './withDrawCircle';
 import { withDrawRect } from './withDrawRect';
 import { withDrawPoly } from './withDrawPoly';
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchProps = {
-  addSvgFigure, deleteSvgFigure, updateMaxId, 
+  addSvgFigure, deleteSvgFigure, updateMaxId, setCurrentFigureId,
 }
 
 export default connect(mapStateToProps, mapDispatchProps)(SVGCanvasContainer);

@@ -1,4 +1,4 @@
-import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, SVG_CHANGE_TOOL, SVG_UPDATE_FIGURE } from '../../constants';
+import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, SVG_CHANGE_TOOL, SVG_UPDATE_FIGURE, SVG_SET_CURRENT_FIGURE_ID } from '../../constants';
 
 export const addSvgFigure = (figure) => ({
   type: SVG_ADD_FIGURE,
@@ -34,6 +34,14 @@ export const changeTool = (tool) => {
     payload: tool,
   }
 
+  return action;
+}
+
+export const setCurrentFigureId = (id) => {
+  const action = {
+    type: SVG_SET_CURRENT_FIGURE_ID,
+    payload: id,
+  }
   return action;
 }
 
