@@ -51,8 +51,8 @@ const Select = ({ options, cbSelectedItem }) => {
   
 
   return (
-    <div className="select">
-      <div className="select__checked" onClick={handleShowList}>{selectedOption}</div>
+    <div className="select" onClick={handleShowList}>
+      <div className="select__checked" >{selectedOption}</div>
       {showList && <ul className="select__dropdown">
         {optionsList}
       </ul>}

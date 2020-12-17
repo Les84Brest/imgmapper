@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { Fragment, PureComponent } from 'react';
 import { PropTypes } from "prop-types";
 import Image from './controls/Image';
 
@@ -35,18 +35,12 @@ class AreaDetails extends PureComponent {
     console.log('linkTarget', linkTarget));
 
   render() {
-    if (this.state.currentAreaId) {
-      const itemIndex = this.state.areasList.findIndex(item => {
-        if (item.id === this.state.currentAreaId) {
-          return true;
-        }
-      });
-      const { figureType, id } = this.state.areasList[itemIndex]
-    }
     
+
     return (
-      { (this.state.currentAreaId != '') &&
-      <div className="column__wrap">
+
+      <Fragment>
+      {this.props.currentFigureId && <div className="column__wrap">
 
         <div className="column__title"> Area details</div>
         <div className="column__content">
@@ -58,8 +52,8 @@ class AreaDetails extends PureComponent {
               </div>
               <div className="area-name__text">
               </div>
-                <div className="area-name__title"> {id} </div>
-              <div className="area-name__type">{figureType}</div>
+              <div className="area-name__title"> fasdf </div>
+              <div className="area-name__type">figureType</div>
             </div>
             <div className="area__coords">
               <label>X:</label>
@@ -92,11 +86,12 @@ class AreaDetails extends PureComponent {
             </div>
           </div>
         </div>
-      </div>
-    }
+      </div>}
+      </Fragment>
     )
-    }
   }
+  
 }
+
 
 export default AreaDetails;

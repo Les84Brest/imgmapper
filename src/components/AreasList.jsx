@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 //css import
 import './AreasList.sass';
 
+
 class AreasList extends Component {
 
 
@@ -18,10 +19,33 @@ class AreasList extends Component {
   state = {
     figuresList: this.props.figuresList,
   }
+
   //удаляем область
   cbDeleteArea = (id )=> {
-    console.log('удаляем', id);
-    this.props.deleteSvgFigure()
+    // найдем id предыдущего члена массива для того чтобы сделать его текущим
+    if (this.state.figuresList.length > 1){
+      let prevElementIndex = null;
+      for (let i = 0; i < this.state.figuresList.length; i++) {
+        const element = this.state.figuresList[i];
+        if (element.id === id && i !== 0){
+          prevElementIndex = this.state.figuresList[i-1].id;
+          break;
+        }else{
+          // назначаем для детализации следующий элемент
+          prevElementIndex = this.state.figuresList[i+1].id;
+          break;
+        }
+        
+      }
+      this.props.deleteSvgFigure(id);
+      // устанавливаем текущую фигуру для детального отображения
+      this.props.setCurrentFigureId(prevElementIndex);
+    }else{
+      this.props.deleteSvgFigure(id);
+      // сбрасываем текущую фигуру
+      this.props.setCurrentFigureId(null);
+    }
+
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {

@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { updateSvgFigure } from "../store/svgcanvas/actions";
+import { updateSvgFigure, setCurrentFigureId } from "../store/svgcanvas/actions";
 
 import AreaDetails from './AreaDetails';
  

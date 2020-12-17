@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { deleteSvgFigure } from "../store/svgcanvas/actions";
+import { deleteSvgFigure, setCurrentFigureId } from "../store/svgcanvas/actions";
 
 import AreasList from './AreasList'
  
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchProps = {
-   deleteSvgFigure, 
+   deleteSvgFigure, setCurrentFigureId,
 }
 
 export default connect(mapStateToProps, mapDispatchProps)(AreasListContainer);
