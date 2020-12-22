@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { updateSvgFigure, setCurrentFigureId } from "../store/svgcanvas/actions";
+import { updateSvgFigure,  } from "../store/svgcanvas/actions";
 
 import AreaDetails from './AreaDetails';
  
@@ -9,19 +9,30 @@ import AreaDetails from './AreaDetails';
 
 class AreaDetailsContainer extends Component {
 
-   
+   constructor(props){
+     super(props);
+    //
+     let areaControls = getAreaControls(props.currentFigureId);
+    this.state = {
+      combinedProps: {props, areaControls},
+    }
+
+   }
   /**Prop Types  */
   static propTypes = {
     figuresList: PropTypes.array,
     deleteSvgFigure: PropTypes.func,  // actionmaker for delete figure/area from list
   }
 
-  
+ 
+  getAreaControls = id => {
+
+  }
 
   render() {
 
     return (
-      <AreaDetails {... this.props}  />
+      <AreaDetails {... this.state.combinedProps}  />
     )
   }
 }

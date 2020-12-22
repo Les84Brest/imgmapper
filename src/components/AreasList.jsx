@@ -86,3 +86,6 @@ class AreasList extends Component {
 }
 
 export default AreasList;
+
+
+  

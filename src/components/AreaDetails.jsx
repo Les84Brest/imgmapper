@@ -9,11 +9,28 @@ import Select from './controls/Select';
 
 class AreaDetails extends PureComponent {
 
+constructor(props){
+  super(props);
+  console.log(props);
+  let figure = null;
 
-  state = {
+  for (let i = 0; i < this.props.figuresList.length; i++) {
+    const element = this.props.figuresList[i];
+    if (element.id == this.props.currentFigureId){
+      figure = element;
+      break;
+    }
+    
+  }
+
+  this.state = {
     areasList: this.props.figuresList,
     currentAreaId: this.props.currentFigureId,
+    currentFigure: figure
+    ,
   }
+}
+  
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let nextState = {
@@ -23,6 +40,16 @@ class AreaDetails extends PureComponent {
     return nextState;
   }
 
+  componentDidUpdate() {
+    for (let i = 0; i < this.state.areasList.length; i++) {
+      const element = this.state.areasList[i];
+      if (element.id == this.state.currentFigureId){
+        this.setState({currentFigure: element});
+        break;
+      }
+      
+    }
+  }
 
   /**Prop Types  */
   static propTypes = {
@@ -35,62 +62,62 @@ class AreaDetails extends PureComponent {
     console.log('linkTarget', linkTarget));
 
   render() {
-    
+
 
     return (
 
       <Fragment>
-      {this.props.currentFigureId && <div className="column__wrap">
+        {this.props.currentFigureId && <div className="column__wrap">
 
-        <div className="column__title"> Area details</div>
-        <div className="column__content">
-          <div className="area-details">
-            <div className="area-name">
-              <div className="area-name__img">
-                <Image src="images/circle_details.png" />
+          <div className="column__title"> Area details</div>
+          <div className="column__content">
+            <div className="area-details">
+              <div className="area-name">
+                <div className="area-name__img">
+                  <Image src="images/circle_details.png" />
 
+                </div>
+                <div className="area-name__text">
+                </div>
+                <div className="area-name__title"> hfhf</div>
+                <div className="area-name__type">figureType</div>
               </div>
-              <div className="area-name__text">
+              <div className="area__coords">
+                <label>X:</label>
+                <input className="input__text" size={4} type="text" />
+                <label>Y:</label>
+                <input className="input__text" size={4} type="text" />
+                <label>Radius:</label>
+                <input className="input__text" size={4} type="text" />
               </div>
-              <div className="area-name__title"> fasdf </div>
-              <div className="area-name__type">figureType</div>
-            </div>
-            <div className="area__coords">
-              <label>X:</label>
-              <input className="input__text" size={4} type="text" />
-              <label>Y:</label>
-              <input className="input__text" size={4} type="text" />
-              <label>Radius:</label>
-              <input className="input__text" size={4} type="text" />
-            </div>
-            <div className="area__options">
+              <div className="area__options">
 
-              <div className="input-control">
-                <label>href</label>
-                <input className="input__text text-align-left" type="text" size="40" />
-              </div>
-              <div className="input-control">
-                <label>alt</label>
-                <input className="input__text text-align-left" type="text" size="40" />
-              </div>
-              <div className="input-control">
-                <label>target</label><Select options={[
-                  { _blank: 'blank', },
-                  { _parent: 'parent', },
-                  { _self: 'self', selected: true, },
-                  { _top: 'top', },
-                ]}
-                  cbSelectedItem={this.cbLinkTarget} />
+                <div className="input-control">
+                  <label>href</label>
+                  <input className="input__text text-align-left" type="text" size="40" />
+                </div>
+                <div className="input-control">
+                  <label>alt</label>
+                  <input className="input__text text-align-left" type="text" size="40" />
+                </div>
+                <div className="input-control">
+                  <label>target</label><Select options={[
+                    { _blank: 'blank', },
+                    { _parent: 'parent', },
+                    { _self: 'self', selected: true, },
+                    { _top: 'top', },
+                  ]}
+                    cbSelectedItem={this.cbLinkTarget} />
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>}
+        </div>}
       </Fragment>
     )
   }
-  
+
 }
 
 
