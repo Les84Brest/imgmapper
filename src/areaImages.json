@@ -1,0 +1,4 @@
+[ {"name":  "FIGURE_RECT",  "imagePath":"../images/rectangle_details.png"},
+  {"name":  "FIGURE_CIRCLE",  "imagePath":"../images/circle_details.png"},
+  {"name":  "FIGURE_POLY",  "imagePath":"../images/poly_details.png"}]
+ 

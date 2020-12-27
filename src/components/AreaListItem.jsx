@@ -57,7 +57,7 @@ const AreaListItem = ({ areaInfo,  number,  onClick}) => {
 };
 
 AreaListItem.propTypes = {
-  areaInfo: PropTypes.array,
+  areaInfo: PropTypes.object,
   onClick: PropTypes.func,
   number: PropTypes.number,
   

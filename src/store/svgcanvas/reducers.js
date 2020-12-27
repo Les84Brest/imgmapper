@@ -11,7 +11,7 @@ const defaultState = {
 export const svgCanvasReducer = (state = defaultState, action) => {
 
   let figures = null;
-  
+
 
   switch (action.type) {
 
@@ -38,13 +38,13 @@ export const svgCanvasReducer = (state = defaultState, action) => {
     case SVG_UPDATE_FIGURE:
       figures = [...state.figuresList];
       let delIndex = figures.findIndex(item => {
-        return item.id === action.payload.id ? true : false; });
-      figures.slice(delIndex, 1, action.payload);
-      newState = { ...state, figuresList: figures.slice(delIndex, 1, action.payload) };
-      return newState;
+        return item.id === action.payload.id ? true : false;
+      });
+      figures.splice(delIndex, 1, action.payload);
+      return { ...state, figuresList: figures };;
     case SVG_SET_CURRENT_FIGURE_ID:
       return { ...state, currentFigureId: action.payload };
-     
+
 
     default:
       return state;

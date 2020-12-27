@@ -21,7 +21,7 @@ class AreasList extends Component {
   }
 
   //удаляем область
-  cbDeleteArea = (id )=> {
+  cbDeleteArea = (id)=> {
     // найдем id предыдущего члена массива для того чтобы сделать его текущим
     if (this.state.figuresList.length > 1){
       let prevElementIndex = null;
@@ -49,7 +49,7 @@ class AreasList extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('getDerivedStateFromProps - nextProps', nextProps);
+  
     if (nextProps.figuresList.length !== prevState.figuresList.length) {
       return { figuresList: nextProps.figuresList }
     }
