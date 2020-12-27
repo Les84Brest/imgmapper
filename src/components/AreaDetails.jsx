@@ -46,27 +46,29 @@ class AreaDetails extends PureComponent {
   // готовим информацию к отображению
   prepareArea = () => {
 
-    if (this.state.areaToShow.hasOwnProperty('linkTarget')) {
-      console.log('нифига не установлено');
-    }
-
     switch (this.state.areaToShow.figureType) {
+      case FIGURE_POLYGON:
+        this.figureTypeText = 'polygon';
+        this.figureTypeImage = 'images/detail_icons/poly_details.png';
+        break;
       case FIGURE_RECT:
         this.figureTypeText = 'rectangle';
-        this.figureTypeImage = 'images/rectangle_details.png';
+        this.figureTypeImage = 'images/detail_icons/rectangle_details.png';
         break;
       case FIGURE_CIRCLE:
         this.figureTypeText = 'circle';
-        this.figureTypeImage = "images/circle_details.png";
+        this.figureTypeImage = '/images/detail_icons/circle_details.png';
         break;
-      case FIGURE_POLYGON:
-        this.figureTypeText = 'polygon';
-        this.figureTypeImage = 'rectangle_details1.png';
-        break;
+
 
       default:
         break;
     }
+
+    console.log('areaImages', this.areaImages);
+    console.log('fig type', this.state.areaToShow.figureType);
+    this.figureTypeImage = this.areaImages[this.state.areaToShow.figureType];
+    console.log('type image', this.figureTypeImage);
   }
 
   // установленный место открытия ссылки
@@ -75,14 +77,18 @@ class AreaDetails extends PureComponent {
     // newArea.linkTarget = linkTarget;
     // this.props.updateSvgFigure(newArea);
   };
+  handleHrefChange = event => {
+      let newFigure= {...this.state.areaToShow};
+      newFigure.href = event.target.value;
+      let newState= {...this.state, areaToShow: newFigure}
+      this.setState(newState);
+  }
 
 
   render() {
     if (this.state.areaToShow) {
-      console.log('Дошло');
-
       this.prepareArea();
-      console.log(this.figureTypeText);
+
     }
 
     return (
@@ -95,7 +101,8 @@ class AreaDetails extends PureComponent {
             <div className="area-details">
               <div className="area-name">
                 <div className="area-name__img">
-                  <Image src={this.figureTypeImage} />
+                  {/* <Image src={this.figureTypeImage} /> */}
+                  <img src={this.figureTypeImage} alt=""/>
 
                 </div>
                 <div className="area-name__text">
@@ -116,7 +123,7 @@ class AreaDetails extends PureComponent {
 
                 <div className="input-control">
                   <label>href</label>
-                  <input className="input__text text-align-left" type="text" size="40" />
+                  <input className="input__text text-align-left" type="text" size="40" value={this.state.areaToShow.href} onChange={this.handleHrefChange} />
                 </div>
                 <div className="input-control">
                   <label>alt</label>
