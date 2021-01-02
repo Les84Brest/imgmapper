@@ -1,4 +1,4 @@
-import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, FIGURE_RECT, FIGURE_CIRCLE, FIGURE_POLYGON, RECT_TOOL, POLY_TOOL, SVG_CHANGE_TOOL, SVG_UPDATE_FIGURE, SVG_SET_CURRENT_FIGURE_ID } from '../../constants';
+import { SVG_ADD_FIGURE, SVG_DELETE_FIGURE, SVG_UPDATE_FIGURE_NUMBER, SVG_CHANGE_TOOL, SVG_UPDATE_FIGURE, SVG_SET_CURRENT_FIGURE_ID } from '../../constants';
 
 
 const defaultState = {
@@ -41,7 +41,8 @@ export const svgCanvasReducer = (state = defaultState, action) => {
         return item.id === action.payload.id ? true : false;
       });
       figures.splice(delIndex, 1, action.payload);
-      return { ...state, figuresList: figures };;
+      return { ...state, figuresList: figures };
+
     case SVG_SET_CURRENT_FIGURE_ID:
       return { ...state, currentFigureId: action.payload };
 

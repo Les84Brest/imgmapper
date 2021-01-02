@@ -14,49 +14,72 @@ class AreasList extends Component {
   static propTypes = {
     figuresList: PropTypes.array,
     deleteSvgFigure: PropTypes.func,  // actionmaker for delete figure/area from list
+    setCurrentFigureId: PropTypes.func,
+    currentFigureId: PropTypes.string,
   }
 
   state = {
     figuresList: this.props.figuresList,
+    currentFigureId: this.props.currentFigureId,
   }
 
+  cbClickArea = (id) => {
+
+    this.setState({
+      currentFigureId: id,
+    });
+
+    this.props.setCurrentFigureId(id);
+
+  }
   //удаляем область
-  cbDeleteArea = (id)=> {
-    // найдем id предыдущего члена массива для того чтобы сделать его текущим
-    if (this.state.figuresList.length > 1){
-      let prevElementIndex = null;
-      for (let i = 0; i < this.state.figuresList.length; i++) {
-        const element = this.state.figuresList[i];
-        if (element.id === id && i !== 0){
-          prevElementIndex = this.state.figuresList[i-1].id;
-          break;
-        }else{
-          // назначаем для детализации следующий элемент
-          prevElementIndex = this.state.figuresList[i+1].id;
-          break;
-        }
-        
-      }
-      this.props.deleteSvgFigure(id);
-      // устанавливаем текущую фигуру для детального отображения
-      this.props.setCurrentFigureId(prevElementIndex);
-    }else{
+  cbDeleteArea = (id) => {
+    // один элемент удаляем его и массив фигур получается пустой
+    if (this.state.figuresList.length == 1) {
       this.props.deleteSvgFigure(id);
       // сбрасываем текущую фигуру
       this.props.setCurrentFigureId(null);
+      return;
     }
+
+    // найдем id элемента, который нужно сделать текущим
+    // в общем случае это предыдущий элемент
+
+    let nextFocusElement = null;
+    for (let i = 0; i < this.state.figuresList.length; i++) {
+      const element = this.state.figuresList[i];
+
+      if (element.id === id) { // элемент для удаления найден. Анализируем его окружение
+
+        if (i == 0) {// первый элемент
+          nextFocusElement = this.state.figuresList[i + 1].id;
+          break;
+        }
+
+        nextFocusElement = this.state.figuresList[i - 1].id;
+        break;
+
+      }
+
+
+
+    }
+    this.props.deleteSvgFigure(id);
+    // устанавливаем текущую фигуру для детального отображения
+    this.props.setCurrentFigureId(nextFocusElement);
+
 
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-  
+
     if (nextProps.figuresList.length !== prevState.figuresList.length) {
       return { figuresList: nextProps.figuresList }
     }
     return {};
   }
 
-  
+
   render() {
     let areas = [];
 
@@ -64,8 +87,11 @@ class AreasList extends Component {
       areas.push(<AreaListItem
         areaInfo={item}
         number={i + 1}
-        onClick={this.cbDeleteArea}
-        key={item.key} />);
+        onDelete={this.cbDeleteArea}
+        onClick={this.cbClickArea}
+        key={item.key}
+        active={this.state.currentFigureId === item.id ? true : false}
+      />);
     });
 
     return (
@@ -88,4 +114,3 @@ class AreasList extends Component {
 export default AreasList;
 
 
-  

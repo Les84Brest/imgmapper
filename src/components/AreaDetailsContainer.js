@@ -9,7 +9,9 @@ import AreaDetails from './AreaDetails';
 
 class AreaDetailsContainer extends PureComponent {
 
-
+  state = {
+    currentFigureId: '',
+  }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     
@@ -40,7 +42,7 @@ getAreaToShowIndex = id => {
 
 
 render() {
-  console.log('Container render');
+  
   const areaToShow = this.props.figuresList[this.getAreaToShowIndex(this.state.currentFigureId)];
 
   return (

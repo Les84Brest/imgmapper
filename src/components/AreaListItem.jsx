@@ -1,13 +1,22 @@
-import React, { useState, useEffect, Children, Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 import { FIGURE_CIRCLE, FIGURE_POLYGON, FIGURE_RECT } from '../constants';
 
 
-const AreaListItem = ({ areaInfo,  number,  onClick}) => {
+//css import
+import './AreaListItem.sass';
+
+const AreaListItem = ({ areaInfo,  number, active,  onClick, onDelete}) => {
   
+  let classes = ClassNames(
+    'area-item', 
+    {active }
+  ) 
+
   let iconClass = null ;
   let areaCoords = null;
+
   switch(areaInfo.figureType){
     case FIGURE_CIRCLE:
       const circleRadius = Math.floor(Math.sqrt(Math.pow(areaInfo.x2 - areaInfo.x1, 2) + Math.pow(areaInfo.y2 - areaInfo.y1, 2)))
@@ -26,8 +35,6 @@ const AreaListItem = ({ areaInfo,  number,  onClick}) => {
   }
   
   
-  
-  
   const getFigureType = (name) => {
     switch(name){
       case FIGURE_CIRCLE:
@@ -39,8 +46,14 @@ const AreaListItem = ({ areaInfo,  number,  onClick}) => {
     }
     return '';
   }
+
+  const handleItemDelete = (event) => {
+    event.stopPropagation();
+    onDelete(areaInfo.id);
+  }
+
   return (
-    <tr className="area-item">
+    <tr className={classes} onClick={() => {onClick(areaInfo.id)}}>
       <td className="area__number">{number}.</td>
       <td className="area__icon">
         <i className={iconClass}></i>
@@ -48,7 +61,7 @@ const AreaListItem = ({ areaInfo,  number,  onClick}) => {
       <td className="area-item__name">{getFigureType(areaInfo.figureType)}</td>
       <td className="area__coords">{areaCoords}</td>
       <td>
-        <button className="area-item__delete" onClick={() => {onClick(areaInfo.id)}}>
+        <button className="area-item__delete" onClick={handleItemDelete}>
           <i className="area-item__delete-icon"></i>
         </button>
       </td>
@@ -60,13 +73,15 @@ AreaListItem.propTypes = {
   areaInfo: PropTypes.object,
   onClick: PropTypes.func,
   number: PropTypes.number,
-  
+  onDelete: PropTypes.func, 
+  active: PropTypes.bool,
 };
 
 AreaListItem.defaultProps = {
   number: 99,
   onClick: () => { },
-
+  onDelete: () => { },
+  active: false,
 };
 
 export default AreaListItem;

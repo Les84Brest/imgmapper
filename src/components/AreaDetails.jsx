@@ -1,5 +1,6 @@
 import { Fragment, PureComponent } from 'react';
 import { PropTypes } from "prop-types";
+import Classes from 'classnames';
 import Image from './controls/Image';
 
 
@@ -17,6 +18,8 @@ class AreaDetails extends PureComponent {
     { _self: 'self', selected: true, },
     { _top: 'top', },
   ];
+  classes = {}
+  iconClassess= {}
 
   constructor(props) {
     super(props);
@@ -32,6 +35,8 @@ class AreaDetails extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.areaToShow !== nextProps.areaToShow) {
       return { ...prevState, areaToShow: nextProps.areaToShow };
+    }else{
+      return {...prevState};
     }
   }
 
@@ -49,15 +54,16 @@ class AreaDetails extends PureComponent {
     switch (this.state.areaToShow.figureType) {
       case FIGURE_POLYGON:
         this.figureTypeText = 'polygon';
-        this.figureTypeImage = 'images/detail_icons/poly_details.png';
+        this.iconClassess = Classes('area-name__icon', 'poly-icon');
+        
         break;
-      case FIGURE_RECT:
-        this.figureTypeText = 'rectangle';
-        this.figureTypeImage = 'images/detail_icons/rectangle_details.png';
-        break;
-      case FIGURE_CIRCLE:
-        this.figureTypeText = 'circle';
-        this.figureTypeImage = '/images/detail_icons/circle_details.png';
+        case FIGURE_RECT:
+          this.figureTypeText = 'rectangle';
+          this.iconClassess = Classes('area-name__icon', 'rect-icon');
+          break;
+          case FIGURE_CIRCLE:
+            this.figureTypeText = 'circle';
+            this.iconClassess = Classes('area-name__icon', 'circle-icon');
         break;
 
 
@@ -65,10 +71,9 @@ class AreaDetails extends PureComponent {
         break;
     }
 
-    console.log('areaImages', this.areaImages);
-    console.log('fig type', this.state.areaToShow.figureType);
+    
     this.figureTypeImage = this.areaImages[this.state.areaToShow.figureType];
-    console.log('type image', this.figureTypeImage);
+    
   }
 
   // установленный место открытия ссылки
@@ -81,7 +86,7 @@ class AreaDetails extends PureComponent {
       let newFigure= {...this.state.areaToShow};
       newFigure.href = event.target.value;
       let newState= {...this.state, areaToShow: newFigure}
-      this.setState(newState);
+      this.props.updateSvgFigure(newFigure);
   }
 
 
@@ -101,9 +106,8 @@ class AreaDetails extends PureComponent {
             <div className="area-details">
               <div className="area-name">
                 <div className="area-name__img">
-                  {/* <Image src={this.figureTypeImage} /> */}
-                  <img src={this.figureTypeImage} alt=""/>
-
+                                  
+                  <i className={this.iconClassess}></i>
                 </div>
                 <div className="area-name__text">
                   <div className="area-name__title"> {this.state.areaToShow.id}</div>

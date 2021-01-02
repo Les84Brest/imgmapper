@@ -1,13 +1,8 @@
 /* eslint-disable no-unreachable */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FIGURE_CIRCLE, FIGURE_RECT, FIGURE_POLYGON } from '../constants';
 
-import RectSvg from './RectSvg';
-import PolySvg from './PolySvg';
-import CircleSvg from './CircleSvg';
-
-import { MODE_EDIT, MODE_SHOW, MODE_DRAWING } from "../constants";
+import { MODE_EDIT,  MODE_DRAWING } from "../constants";
 
 //sass import
 import './SVGCanvas.sass';

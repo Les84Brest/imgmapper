@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Select.sass';
 
@@ -7,7 +7,7 @@ const Select = ({ options, cbSelectedItem }) => {
   // Нужно чтобы он работал от ситуациии, либо вниз Либо вверх
   useEffect(() => {
     optionsData.forEach(item => {
-      if (item.selected == true) {
+      if (item.selected === true) {
         const key = Object.keys(item);
         setSelectedOption(item[key[0]]);
         cbSelectedItem(key[0]);

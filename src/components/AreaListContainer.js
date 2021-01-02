@@ -29,6 +29,7 @@ class AreasListContainer extends Component {
 const mapStateToProps = state => {
   return {
     figuresList:  state.svgCanvas.figuresList,
+    currentFigureId: state.svgCanvas.currentFigureId,
       
   }
 }

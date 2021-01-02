@@ -39,7 +39,10 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             x2: x,
             y2: y,
             id: `rect-${this.state.figureId}`,
-            key: this.state.figureId
+            key: this.state.figureId,
+            href: '',
+            alt: '',
+            linkTarget: '',
           }
           svgProps.addSvgFigure(newFigure);
           svgProps.setCurrentFigureId(`rect-${this.state.figureId}`);
