@@ -8,14 +8,22 @@ import SVGCanvasContainer from './SVGCanvasContainer';
 import './MapImage.sass';
 
 
-const MapImage = () => (
+const MapImage = () => {
 
-  <div className="imgmapper__mapimage">
-    <SVGCanvasContainer/>
-    <Image src="../images/workmap.jpg" />
-  </div>
+  const mapImagePath = "../images/workmap.jpg";
+  const imgStyle = {
+    minWidth: '986px',
+    minHeight: '114px',
+    display: 'block'
+  }
 
-)
+  return (
+    <div className="imgmapper__mapimage">
+      <SVGCanvasContainer />
+      <img src={mapImagePath} style={imgStyle} />
+    </div>
+  )
+}
 
 
 

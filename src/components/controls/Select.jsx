@@ -2,18 +2,36 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Select.sass';
 
-const Select = ({ options, cbSelectedItem }) => {
+const Select = ({ options, cbSelectedItem, selectedItem }) => {
   // TODO список выезжает вниз. Это пведедение по умолчанию
   // Нужно чтобы он работал от ситуациии, либо вниз Либо вверх
+
+  // обрабатываем список options в зависимости от наличия выделенного фрагмента
   useEffect(() => {
+    console.log('use буз зависимости');
     optionsData.forEach(item => {
       if (item.selected === true) {
         const key = Object.keys(item);
         setSelectedOption(item[key[0]]);
-        cbSelectedItem(key[0]);
+        //cbSelectedItem(key[0]);
       }
     });
+
   });
+  useEffect(() => {
+    console.log('use зависимость');
+    if (selectedItem){
+      optionsData.forEach(item => {
+        const key = Object.keys(item)[0];
+        if (key !== selectedItem){
+          item.selected = false;
+        }else{
+          item.selected = true;
+          setSelectedOption(item[key]);
+        }
+      });
+    }
+  }, [selectedItem]);
   const [optionsData, setOptionsData] = useState(options);
   const [showList, setShowList] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
@@ -34,6 +52,8 @@ const Select = ({ options, cbSelectedItem }) => {
     setOptionsData(newOptionsData);
    
     handleShowList();
+    // отправляем в колбэк
+    cbSelectedItem(event.target.dataset.value);
   }
 
   const handleShowList = () => {
@@ -63,11 +83,13 @@ const Select = ({ options, cbSelectedItem }) => {
 Select.propTypes = {
   options: PropTypes.array.isRequired,
   cbSelectedItem: PropTypes.func,
+  selectedItem: PropTypes.string,
 };
 
 Select.defaultProps = {
   options: {},
   cbSelectedItem: () => { },
+  selectedItem: null,
 };
 
 export default Select;
