@@ -24,7 +24,7 @@ const DetailsInput = ({label, size, initialValue, cbOnChange}) => {
  }
   return (
     <>
-      <label>{label}:</label>
+      {(label) && <label>{label}:</label>}      
       <input className="input__text" size={size} type="text" defaultValue={initialValue}  ref={setInputRef} onBlur={handleOnBlur}/>
     </>
   );

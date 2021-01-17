@@ -1,0 +1,65 @@
+@import '../sass/_vars'
+
+.loadimage
+  width: 250px
+  height: 350px
+  margin: 20px auto
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-direction: column
+  padding: 10px
+  background-color: $soft-gray
+  border-radius: 15px
+  box-shadow: 5px 10px 7px rgba(0,0,0,0.25)
+  &__divider-text
+    font-weight: 700
+    color: $main
+
+.dropzone
+  width: 90%
+  height: 150px
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 2px dashed $main
+  margin: 0 auto
+  opacity: 0.8
+  border-radius: 7px
+  &__text
+    font-weight: 700
+    text-align: center
+    color: $dark-gray
+    text-transform: uppercase
+.input
+  &__wrapper 
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    margin: 5px 0
+    
+  &__file
+    opacity: 0
+    visibility: hidden
+    position: absolute
+  &__file-button
+    width: 100%
+    max-width: 200px
+    display: flex
+    justify-content: center
+    align-items: center
+    background: transparent
+    border: 2px $main solid
+    border-radius: 25px
+    color: $main
+    font-weight: 700
+    cursor: pointer
+
+  &-text
+    line-height: 1
+    margin-top: 1px
+
+
+

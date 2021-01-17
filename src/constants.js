@@ -1,5 +1,7 @@
 /*actions constants*/
 
+/*Image actions*/
+export const IMAGE_SET = 'IMAGE_SET';
 /*SVG Canvas actions*/
 export const SVG_ADD_FIGURE = 'SVG_ADD_FIGURE';
 export const SVG_DELETE_FIGURE = 'SVG_DELETE_FIGURE';
@@ -7,6 +9,8 @@ export const SVG_UPDATE_FIGURE_NUMBER = 'SVG_UPDATE_FIGURE_NUMBER';
 export const SVG_CHANGE_TOOL = 'SVG_CHANGE_TOOL';
 export const SVG_UPDATE_FIGURE = 'SVG_UPDATE_FIGURE';
 export const SVG_SET_CURRENT_FIGURE_ID = 'SVG_SET_CURRENT_FIGURE_ID';
+
+
 
 
 /* figures type */

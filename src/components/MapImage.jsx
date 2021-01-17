@@ -1,5 +1,5 @@
 import React from 'react';
-
+import DownloadImage from "./DownloadImage";
 import Image from './controls/Image';
 import SVGCanvasContainer from './SVGCanvasContainer';
 
@@ -19,8 +19,9 @@ const MapImage = () => {
 
   return (
     <div className="imgmapper__mapimage">
-      <SVGCanvasContainer />
-      <img src={mapImagePath} style={imgStyle} />
+      <DownloadImage/>
+      {/* <SVGCanvasContainer />
+      <img src={mapImagePath} style={imgStyle} /> */}
     </div>
   )
 }

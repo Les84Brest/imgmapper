@@ -1,14 +1,11 @@
 import React from 'react';
 import MainToolbar from './MainToolbar';
 import Header from './Header';
-import MapImage from './MapImage';
-import PropTypes from 'prop-types';
-
-
 //css import
 import './WorkPlace.sass';
-import SVGCanvasContainer from './SVGCanvasContainer';
+
 import MainToolbarContainer from './MainToolbarContainer';
+import MapImageContainer from './MapImageContainer';
 
 const WorkPlace = () => {
 
@@ -21,7 +18,7 @@ const WorkPlace = () => {
         <MainToolbarContainer />  
         <div className="wopkplace__work-img">
         <Header/>
-        <MapImage/>
+        <MapImageContainer/>
         </div>
       </div>
     )
