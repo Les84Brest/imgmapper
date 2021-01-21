@@ -1,8 +1,8 @@
 import  {Component} from 'react';
 import Button from './controls/Button';
 import Icon from './controls/Icon';
-import DetailsInput from "./controls/DetailsInput";
-
+import Input from "./controls/Input";
+//https://content2.onliner.by/catalog/device/main/b2b7550056f1f3e953212c79ce65028e.jpeg
 //css import
 import './DownloadImage.sass';
 
@@ -39,7 +39,27 @@ class DownloadImage extends Component {
 
     fileReader.readAsDataURL(image);
   }
+//проверяем тип файла
+  testFile(type) {
+    switch (type) {
+        case 'image/jpeg':
+        case 'image/gif':
+        case 'image/png':
+            return true;
+    }
+    return false;
+}
+  // устанавливаем имя карты
 
+  cbSetMapName = mapName => { 
+    console.log(mapName);
+  }
+
+  cbImageFromURL = imageURL => {
+    if(typeof imageURL == 'string'){
+      console.log('ULR - ', imageURL);
+    }
+  }
   // добавить файл через drag-n-drop
 
  
@@ -91,19 +111,18 @@ class DownloadImage extends Component {
         </div>
         {/* URL c которого можно загрузить картинку */}
         <p className="loadimage__divider-text">tape an URL</p>
-        <DetailsInput
+        <Input
           label=''
           size={20}
-          initialValue=''
-          cbOnChange={() => { }}
+          cbOnChange={this.cbImageFromURL}
           key="url"
         />
         <p className="loadimage__divider-text">Map name</p>
-        <DetailsInput
+        <Input
           label=''
           size={20}
-          initialValue=''
-          cbOnChange={() => { }}
+          
+          cbOnChange={this.cbSetMapName}
           key="map_name"
         />
         <Button className="btn-solid" onClick={() => { }} >
