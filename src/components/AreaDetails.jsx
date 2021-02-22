@@ -236,10 +236,10 @@ class AreaDetails extends PureComponent {
 
   // установленный место открытия ссылки
   cbLinkTarget = linkTarget => {
-    console.log(`Получили на свою голову link - ${linkTarget}`);
-    // const newArea = Object.assign({}, this.state.areaToShow) ;
-    // newArea.linkTarget = linkTarget;
-    // this.props.updateSvgFigure(newArea);
+     
+     const newArea = Object.assign({}, this.state.areaToShow) ;
+     newArea.linkTarget = linkTarget;
+     this.props.updateSvgFigure(newArea);
   };
 
   handleHrefChange = event => {

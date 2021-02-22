@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 
 
-const FigureControl = ({x, y, cbChangeCoords, visible}) => {
+const FigureControl = ({x, y, figureColors, cbChangeCoords, visible}) => {
 
   
   const [coordX, setCoordX] = useState(x);
   const [coordY, setCoordY] = useState(y);
 
 	const handleMouseClick = (event) => {
-    console.log('Mouse Click Control');
+   
     event.stopPropagation(); // отменяем всплытие
     // let coords = event.target.getBoundingClientRect(); 
     setCoordX(coordX + 4);
@@ -21,7 +21,7 @@ const FigureControl = ({x, y, cbChangeCoords, visible}) => {
 
 	return (
    
-      <circle cx={coordX} cy={coordY}  r={4}  stroke="gray" fill="PaleGreen" strokeWidth=".5"  />
+      <circle cx={coordX} cy={coordY}  r={4}  stroke={figureColors.markerStrokeColor} fill={figureColors.markerFillColor} strokeWidth=".5"  />
     
 	);
 };

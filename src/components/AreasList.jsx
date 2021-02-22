@@ -1,4 +1,4 @@
-import { PureComponent, Component, Fragment } from 'react';
+import { Component, Fragment } from 'react';
 import AreaListItem from './AreaListItem';
 import PropTypes from 'prop-types';
 

@@ -2,6 +2,10 @@
 
 /*Image actions*/
 export const IMAGE_SET = 'IMAGE_SET';
+export const IMAGE_SET_SIZE = 'IMAGE_SET_SIZE';
+export const IMAGE_SET_MAP_NAME = 'IMAGE_SET_MAP_NAME';
+export const IMAGE_SET_IMAGE_NAME = 'IMAGE_SET_IMAGE_NAME';
+
 /*SVG Canvas actions*/
 export const SVG_ADD_FIGURE = 'SVG_ADD_FIGURE';
 export const SVG_DELETE_FIGURE = 'SVG_DELETE_FIGURE';

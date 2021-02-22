@@ -1,7 +1,7 @@
-import React, { Component} from 'react';
+import { Component} from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
+import './Portal.sass';
 
 
 class Portal extends Component {
@@ -18,6 +18,7 @@ class Portal extends Component {
   }
   
  render() {
+   this.element.className = 'portal';
     return ReactDOM.createPortal(this.props.children, this.element);
   }
 }

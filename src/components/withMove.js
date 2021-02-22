@@ -1,97 +1,40 @@
 import { Component } from 'react';
-import { FIGURE_POLYGON, MODE_DRAWING } from '../constants';
+import {  MODE_EDIT, } from '../constants';
 
 
 
-export const withDrawPoly = (svgProps) => SVGCanvas => {
+export const withMove = (svgProps) => SVGCanvas => {
 
   return (
-    class DrawingPolySVG extends Component {
+    class MoveFiguresSvg extends Component {
       constructor(props) {
         super(props);
 
         this.state = {
           combinedProps: {
             figuresList: svgProps.figuresList,
-            workMode: MODE_DRAWING,
+            workMode: MODE_EDIT,
             cbMouseClick: this.cbMouseClick,
             cbMouseMove: this.cbMouseMove,
             imageSize: svgProps.imageSize,
             figureColors: svgProps.figureColors,
+            
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
-          currentPoly: null, //первая координата x,y
+          firstPoint: null, //первая координата x,y
           startDrawing: false, // рисование не начато
         };
 
       }
 
-      cbMouseClick = (x, y, ctrlKey) => {
-        console.log(`Клик x - ${x} y - ${y}`);
-
-        if (this.state.currentPoly === null) {
-          let newFigure = {
-            figureType: FIGURE_POLYGON,
-            points: [x, y],
-            id: `poly-${this.state.figureId}`,
-            key: this.state.figureId,
-            href: '',
-            alt: '',
-            linkTarget: '',
-          };
-          // пока добавляем фигуру в список для SVGCanvas
-          let newFiguresList = this.state.combinedProps.figuresList.slice();
-          newFiguresList.push(newFigure);
-          let newCombinedProps = {...this.state.combinedProps, figuresList: newFiguresList}
-          
-          this.setState({ 
-            currentPoly: newFigure, 
-            startDrawing: true,
-            combinedProps: newCombinedProps,
-          });
-
-        } else {
-          
-          let newFigure = {...this.state.currentPoly};
-          
-          newFigure.points.push(x);
-          newFigure.points.push(y);
-          if (ctrlKey){ //создание фигуры завершено сохраняем ее
-            svgProps.addSvgFigure(newFigure);
-            svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
-            svgProps.setCurrentFigureId(`poly-${this.state.figureId}`);
-            this.setState({startDrawing: false, currentPoly: null});
-            return;
-          }else{// продолжаем рисование фигуры
-
-            let newFiguresList = this.state.combinedProps.figuresList.slice();
-            newFiguresList.pop();
-            newFiguresList.push(newFigure);
-            let newCombinedProps = {...this.state.combinedProps, figuresList: newFiguresList}
-            
-            this.setState({ 
-              currentPoly: newFigure, 
-              combinedProps: newCombinedProps,
-            });
-            
-          }
-
-          
-          
-          // svgProps.addSvgFigure(newFigure);
-          // svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
-          // this.setState({
-          //   curentFigureId: null,
-          //   firstPoint: null,
-          //   startDrawing: false,
-          // });
-        }
-
+      cbMouseClick = (x, y) => {
+      // определяем куда кликнули по фигуре или
+        console.log('move ', x, y);
 
       }
 
-      cbMouseMove = (x, y, ctrlKey) => {
+      cbMouseMove = (x, y) => {
         // todo организовать плавное изменение размеров
 
 

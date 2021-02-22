@@ -15,7 +15,9 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             figuresList: svgProps.figuresList,
             workMode: MODE_DRAWING,
             cbMouseClick: this.cbMouseClick,
-            cbMouseMove: this.cbMouseMove
+            cbMouseMove: this.cbMouseMove,
+            imageSize: svgProps.imageSize,
+            figureColors: svgProps.figureColors,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
@@ -26,8 +28,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
       }
 
       cbMouseClick = (x, y) => {
-        console.log(`Клик x - ${x} y - ${y}`);
-
+        
         if (this.state.firstPoint === null) {
           this.setState({ firstPoint: { x: x, y: y }, startDrawing: true, });
 
@@ -44,6 +45,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             alt: '',
             linkTarget: '',
           }
+          console.log(newFigure);
           svgProps.addSvgFigure(newFigure);
           svgProps.setCurrentFigureId(`rect-${this.state.figureId}`);
           svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux

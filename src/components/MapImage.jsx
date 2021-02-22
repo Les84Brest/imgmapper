@@ -8,20 +8,41 @@ import SVGCanvasContainer from './SVGCanvasContainer';
 import './MapImage.sass';
 
 
-const MapImage = () => {
+const MapImage = ({ setMapImage, setMapName, mapImage, setImageSize, setImageName, }) => {
 
-  const mapImagePath = "../images/workmap.jpg";
+
   const imgStyle = {
-    minWidth: '986px',
-    minHeight: '114px',
+
     display: 'block'
   }
+  let imageWidth, imageHeigth;
+  // реф на изображение
+  let imgRef = null;
+
+
+
+  const setWorkImageRef = ref => {
+    imgRef = ref;
+    imageWidth = imgRef.clientWidth;
+    imageHeigth = imgRef.clientHeight;
+    setImageSize({
+      imageWidth: imgRef.clientWidth,
+      imageHeigth: imgRef.clientHeight,
+    });
+  }
+
+
 
   return (
     <div className="imgmapper__mapimage">
-      <DownloadImage/>
-      {/* <SVGCanvasContainer />
-      <img src={mapImagePath} style={imgStyle} /> */}
+      {(mapImage) ? <>
+        <SVGCanvasContainer />
+        <img src={mapImage} style={imgStyle} ref={setWorkImageRef} />
+      </>
+        :
+        <DownloadImage setMapImage={setMapImage} setMapName={setMapName} setImageName={setImageName} />
+      }
+
     </div>
   )
 }

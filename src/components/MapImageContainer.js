@@ -1,24 +1,35 @@
 import { Component } from 'react';
-import {connect} from 'react-redux';
-import {setMapImage } from '../store/image/actions';
+import { connect } from 'react-redux';
+import { setMapImage, setImageSize, setMapName, setImageName } from '../store/image/actions';
 import MapImage from './MapImage';
 
 
-class MapImageContainer extends Component{
-  
-  constructor(props){
+class MapImageContainer extends Component {
+
+  constructor(props) {
     super(props);
 
-    this.combinedProps = {...this.props};
-   
-  }  
+    this.state.combinedProps = props;
 
+  }
+
+  state = {
+    combinedProps: null,
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(nextProps.mapImage !== prevState.mapImage){
+      const combinedProps = {... prevState.combinedProps};
+      combinedProps.mapImage = nextProps.mapImage;
+      return {...prevState, combinedProps};
+    }
+    return null;
+  }
 
   render() {
- 
-   
+
     return (
-      <MapImage {...this.combinedProps} />
+      <MapImage {...this.state.combinedProps} />
     )
   }
 }
@@ -30,7 +41,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchProps = {
-  setMapImage,
+  setMapImage, setMapName, setImageSize, setImageName,
 }
 
 export default connect(mapStateToProps, mapDispatchProps)(MapImageContainer);

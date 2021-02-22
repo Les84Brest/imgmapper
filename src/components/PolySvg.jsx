@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import FigureControl from './FigureControl';
 
 
-const PolySvg = ({ points, id }) => {
+const PolySvg = ({ points, id, figureColors, }) => {
 
   const poinstString = points.join(', ');
   let controls = [];
   for (let i = 0; i < points.length; i +=2) {
     controls.push(
-      <FigureControl x={points[i]} y={points[i+1]} key={`${id}-${i}`} />
+      <FigureControl figureColors={figureColors} x={points[i]} y={points[i+1]} key={`${id}-${i}`} />
     );
     
   }
 
   return (
     <g>
-      <polygon points={poinstString} stroke="MediumBlue" fill="LightSkyBlue" strokeWidth="1" fillOpacity="0.45" id={id} />
+      <polygon points={poinstString} stroke={figureColors.strokeColor} fill={figureColors.fillColor} strokeWidth="1" fillOpacity="0.4" id={id} />
       {controls}
     </g>
   );

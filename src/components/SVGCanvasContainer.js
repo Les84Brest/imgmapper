@@ -5,7 +5,8 @@ import {addSvgFigure, deleteSvgFigure, setCurrentFigureId, updateMaxId } from '.
 import { withDrawCircle } from './withDrawCircle';
 import { withDrawRect } from './withDrawRect';
 import { withDrawPoly } from './withDrawPoly';
-import { RECT_TOOL, CIRCLE_TOOL, POLY_TOOL } from '../constants';
+import { withMove } from "./withMove";
+import { RECT_TOOL, CIRCLE_TOOL, POLY_TOOL, MOVE_TOOL } from '../constants';
 
 
 class SVGCanvasContainer extends React.Component{
@@ -17,6 +18,7 @@ class SVGCanvasContainer extends React.Component{
    let DrawCircleCanvas = withDrawCircle(this.props)(SVGCanvas); // рисование кругов
    let DrawRectCanvas = withDrawRect(this.props)(SVGCanvas); // рисование кругов
    let DrawPolyCanvas = withDrawPoly(this.props)(SVGCanvas); // рисование кругов
+   let MoveCanvas = withMove(this.props)(SVGCanvas); // рисование кругов
    
     return (
       <Fragment>
@@ -29,6 +31,9 @@ class SVGCanvasContainer extends React.Component{
         {(this.props.curentTool === POLY_TOOL) &&
         <DrawPolyCanvas />
         }
+        {(this.props.curentTool === MOVE_TOOL) &&
+        <MoveCanvas />
+        }
         
       </Fragment>
     )
@@ -39,7 +44,10 @@ const mapStateToProps = state => {
   return {
     figureId: state.svgCanvas.figureId,
     figuresList:  state.svgCanvas.figuresList,
-    curentTool: state.svgCanvas.currentTool
+    curentTool: state.svgCanvas.currentTool,
+    imageSize: state.mapImage.imageSize,
+    figureColors: state.settings.figureColors,
+    
   }
 }
 const mapDispatchProps = {

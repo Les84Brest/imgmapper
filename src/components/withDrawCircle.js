@@ -15,7 +15,10 @@ export const withDrawCircle = (svgProps) => SVGCanvas => {
             figuresList: svgProps.figuresList,
             workMode: MODE_DRAWING,
             cbMouseClick: this.cbMouseClick,
-            cbMouseMove: this.cbMouseMove
+            cbMouseMove: this.cbMouseMove,
+            imageSize: svgProps.imageSize,
+            figureColors: svgProps.figureColors,
+            
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
@@ -26,8 +29,7 @@ export const withDrawCircle = (svgProps) => SVGCanvas => {
       }
 
       cbMouseClick = (x, y) => {
-        console.log(`Клик x - ${x} y - ${y}`);
-
+      
         if (this.state.firstPoint === null) {
           this.setState({ firstPoint: { x: x, y: y }, startDrawing: true, });
 
@@ -46,7 +48,7 @@ export const withDrawCircle = (svgProps) => SVGCanvas => {
           }
           svgProps.addSvgFigure(newCircle);
           svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
-        svgProps.setCurrentFigureId(`circle-${this.state.figureId}`);
+          svgProps.setCurrentFigureId(`circle-${this.state.figureId}`);
           this.setState({
             curentFigureId: null,
             firstPoint: null,

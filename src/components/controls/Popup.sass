@@ -1,0 +1,29 @@
+@import '../../sass/_vars'
+.popup
+  &__window
+    display: flex
+    flex-direction: column
+    width: 75vw
+    height: 75vh
+    background: #fff
+    box-shadow: 5px 5px 6px rgba(0,0,0,.5)
+    border-radius: 5px
+    overflow: hidden
+    position: relative
+  &__title
+    font-weight: 700
+    display: block
+    padding: 3px 5px
+    width: 100%
+    background-color: $main
+    color: $accent
+  &__close
+    position: absolute
+    right: 5px
+    top: 3px
+    color: $accent
+    font-weight: 700
+    cursor: pointer
+  &__content
+    overflow-y: scroll
+    padding: 5px
