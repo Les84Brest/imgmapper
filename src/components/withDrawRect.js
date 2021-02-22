@@ -64,48 +64,54 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
 
 
         
-        // console.log('MouseMove x ', x, 'y ', y);
+         console.log('MouseMove x ', x, 'y ', y);
 
 
         // // для наглядности что рисуем и где отрисовываем фигуры на mousemove
         // // если флаг startDrawing true - рисование начато никаких фигур еще нет. Добавляем фигуру
 
-        // if (this.state.startDrawing) {
-        //   let newFigure = {
-        //     figureType: FIGURE_CIRCLE,
-        //     x1: this.state.firstPoint.x,
-        //     y1: this.state.firstPoint.y,
-        //     x2: x,
-        //     y2: y,
-        //     id: `circle-${this.state.figureId}`,
-        //     key: this.state.figureId
-        //   }
+        if (this.state.startDrawing) {
+          let newFigure = {
+            figureType: FIGURE_RECT,
+            x1: this.state.firstPoint.x,
+            y1: this.state.firstPoint.y,
+            x2: x,
+            y2: y,
+            id: `rect-${this.state.figureId}`,
+            key: this.state.figureId,
+            href: '',
+            alt: '',
+            linkTarget: '',
+          }
 
-        //   let newFigures = this.state.combinedProps.figuresList.slice();
-        //   newFigures.push(newFigure);
+          let newFigures = this.state.combinedProps.figuresList.slice();
+          newFigures.push(newFigure);
 
-        //   let newCombinedProps = { ...this.state.combinedProps, figuresList: newFigures };
-        //   this.setState({
-        //     startDrawing: false, // рисование продолжается фигура добавлена
-        //     combinedProps: newCombinedProps,
-        //   })
-        // } else if (this.state.firstPoint !== null) {
-        //   let newFigures = this.state.combinedProps.figuresList.slice();
-        //   newFigures.pop();
-        //   newFigures.push({
-        //     figureType: FIGURE_CIRCLE,
-        //     x1: this.state.firstPoint.x,
-        //     y1: this.state.firstPoint.y,
-        //     x2: x,
-        //     y2: y,
-        //     id: `circle-${this.state.figureId}`,
-        //     key: this.state.figureId}
-        //   );
-        //   let newCombinedProps = { ...this.state.combinedProps, figuresList: newFigures };
-        //   this.setState({ combinedProps: newCombinedProps });
+          let newCombinedProps = { ...this.state.combinedProps, figuresList: newFigures };
+          this.setState({
+            startDrawing: false, // рисование продолжается фигура добавлена
+            combinedProps: newCombinedProps,
+          })
+        } else if (this.state.firstPoint !== null) {
+          let newFigures = this.state.combinedProps.figuresList.slice();
+          newFigures.pop();
+          newFigures.push({
+            figureType: FIGURE_RECT,
+            x1: this.state.firstPoint.x,
+            y1: this.state.firstPoint.y,
+            x2: x,
+            y2: y,
+            id: `rect-${this.state.figureId}`,
+            key: this.state.figureId,
+            href: '',
+            alt: '',
+            linkTarget: '',}
+          );
+          let newCombinedProps = { ...this.state.combinedProps, figuresList: newFigures };
+          this.setState({ combinedProps: newCombinedProps });
 
 
-        // }
+        }
 
         
 

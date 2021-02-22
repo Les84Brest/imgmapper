@@ -18,14 +18,31 @@ export default class SVGCanvas extends React.Component {
 
     this.state = {
       workMode: props.workMode,
-      firstClick: null, 
+      firstClick: null,
       figureId: props.figureId,
       figures: [],
       figureColors: props.figureColors,
+      leftTopCoords: null, // координаты левого верхнего угла
     }
 
+    //реф на svg
+    this.svgRef = null;
 
   }
+
+  componentDidMount() {
+
+    let svgRect = this.svgRef.getBoundingClientRect();
+    // устанавливаем координаты верхнего левого угла для рассчета клика
+    this.setState({
+      leftTopCoords: {
+        left: svgRect.left,
+        top: svgRect.top,
+      }
+    })
+
+  }
+
   /**Prop Types  */
   static propTypes = {
     workMode: PropTypes.string,
@@ -86,30 +103,24 @@ export default class SVGCanvas extends React.Component {
     e.stopPropagation();
     //отслеживаем нажатие ctrl
     const ctrlKey = e.ctrlKey || e.metaKey;
+    const { leftTopCoords } = this.state;
 
-    let svgRect = e.target.getBoundingClientRect(); // получаем прямоугольник под SVG холстом
-    switch(this.state.workMode){
-      case MODE_DRAWING:
-        this.props.cbMouseClick(Math.floor(e.clientX - svgRect.left), Math.floor(e.clientY - svgRect.top), ctrlKey);
-        console.log('draw mode ', Math.floor(e.clientX - svgRect.left), Math.floor(e.clientY - svgRect.top) );
-        break;
-      case MODE_EDIT:
-        this.props.cbMouseClick(e.clientX, e.clientY,  ctrlKey);
-        break;
-    }
-    
-
+    this.props.cbMouseClick(e.clientX - leftTopCoords.left, e.clientY - leftTopCoords.top, ctrlKey);
   }
+
   handleMouseMove = (e) => {
     e.stopPropagation();
     //отслеживаем нажатие ctrl
     const ctrlKey = e.ctrlKey || e.metaKey;
-
-    let svgRect = e.target.getBoundingClientRect(); // получаем прямоугольник под SVG холстом
-    this.props.cbMouseMove(Math.floor(e.clientX - svgRect.left), Math.floor(e.clientY - svgRect.top), ctrlKey);
+    const { leftTopCoords } = this.state;
+    
+    this.props.cbMouseMove(e.clientX - leftTopCoords.left, e.clientY - leftTopCoords.top, ctrlKey);
 
   }
 
+  setSvgRef = ref => {
+    this.svgRef = ref;
+  }
 
   render() {
 
@@ -118,7 +129,7 @@ export default class SVGCanvas extends React.Component {
     });
 
     return (
-      <div className="svg-canvas">
+      <div className="svg-canvas" ref={this.setSvgRef}>
         <svg width={this.props.imageSize.imageWidth} height={this.props.imageSize.imageHeigth} version="1.1" xmlns="http://www.w3.org/2000/svg" onClick={this.handleMouseClick} onMouseMove={this.handleMouseMove}  >
           {figures}
         </svg>
