@@ -5,7 +5,17 @@ import FigureControl from './FigureControl';
 
 
 class RectSvg extends React.PureComponent {
+  state = {
+    fillOpacity: 0.40,
 
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.active) {
+      return { ...state, fillOpacity: 0.7, }
+    }
+    return null;
+  }
 
   // должен быть в каждом классе фигуры
   figureToObject = () => ({
@@ -17,24 +27,26 @@ class RectSvg extends React.PureComponent {
   });
 
   static propTypes = {
-    id: PropTypes.number,
+
     x1: PropTypes.number,
     y1: PropTypes.number,
     x2: PropTypes.number,
     y2: PropTypes.number,
     figureType: PropTypes.string,
     figureColors: PropTypes.object,
+    onClick: PropTypes.func, // функция на клик
+    active: PropTypes.bool, // активна ли фигура в данный момент 
+    drawing: PropTypes.bool, //находится ли фигура в процессе рисования редактирования
   };
 
   static defaultProps = {
     // пока не заданы координаты второй точки для построения прямоугольника
     x2: null,
     y2: null,
+    onClick: () => { },
+    active: false,
   }
 
-  handleOnClick = e => {
-    console.log('кликнули');
-  }
 
   render() {
 
@@ -75,28 +87,27 @@ class RectSvg extends React.PureComponent {
         }
       }//x2<x1
     } //y2 < y1
-  
+
     return (
 
-        <g className="area-group" >
-          <rect onClick={this.handleOnClick} x={rectCoords.x} y={rectCoords.y} height={rectCoords.heigth} width={rectCoords.width} stroke={this.props.figureColors.strokeColor} fill={this.props.figureColors.fillColor} strokeWidth="1" fillOpacity="0.4" id={`rect-${id}`} />
+      <g className="area-group"  >
+        <rect x={rectCoords.x} y={rectCoords.y} height={rectCoords.heigth} width={rectCoords.width} stroke={this.props.figureColors.strokeColor} fill={this.props.figureColors.fillColor} strokeWidth="1" fillOpacity={this.state.fillOpacity} data-area-id={id} />
 
-          {/* управление размерами */}
+        {/* управление размерами */}
 
+        {(this.props.drawing) ?
           <FigureControl figureColors={this.props.figureColors} x={rectCoords.x} y={rectCoords.y} key={`${id}-1`} />
-          <FigureControl figureColors={this.props.figureColors} x={rectCoords.x + rectCoords.width} y={rectCoords.y + rectCoords.heigth} key={`${id}-2`} />
-
-        </g>
+          :
+          <>
+            <FigureControl figureColors={this.props.figureColors} x={rectCoords.x} y={rectCoords.y} key={`${id}-1`} id={`${id}-1`}/>
+            <FigureControl figureColors={this.props.figureColors} x={rectCoords.x + rectCoords.width} y={rectCoords.y + rectCoords.heigth} key={`${id}-2`} id={`${id}-2`} />
+          </>
+        }
+      </g>
     );
   }
 };
 
 
 
-// rectCoords = {// координаты снизу вверх слева направо
-//   x: x1,
-//   y: y2,
-//   width: Math.abs(x1 - x2),
-//   heigth: Math.abs(y1 - y2),            
-// }
 export default RectSvg;

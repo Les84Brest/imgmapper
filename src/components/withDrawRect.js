@@ -18,6 +18,8 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             cbMouseMove: this.cbMouseMove,
             imageSize: svgProps.imageSize,
             figureColors: svgProps.figureColors,
+            setCurrentFigureId: svgProps.setCurrentFigureId, // устанавливаем по клику id текущей фигуры
+            currentFigureId: svgProps.currentFigureId,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
@@ -44,8 +46,9 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             href: '',
             alt: '',
             linkTarget: '',
+            drawing: false,
           }
-          console.log(newFigure);
+          
           svgProps.addSvgFigure(newFigure);
           svgProps.setCurrentFigureId(`rect-${this.state.figureId}`);
           svgProps.updateMaxId(this.state.figureId); // обновляем id В Redux
@@ -82,6 +85,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             href: '',
             alt: '',
             linkTarget: '',
+            drawing: true,
           }
 
           let newFigures = this.state.combinedProps.figuresList.slice();
@@ -105,6 +109,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             key: this.state.figureId,
             href: '',
             alt: '',
+            drawing: true,
             linkTarget: '',}
           );
           let newCombinedProps = { ...this.state.combinedProps, figuresList: newFigures };

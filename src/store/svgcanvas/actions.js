@@ -42,6 +42,7 @@ export const setCurrentFigureId = (id) => {
     type: SVG_SET_CURRENT_FIGURE_ID,
     payload: id,
   }
+  
   return action;
 }
 

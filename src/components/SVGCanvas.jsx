@@ -51,8 +51,21 @@ export default class SVGCanvas extends React.Component {
     cbMouseClick: PropTypes.func,
     cbMouseMove: PropTypes.func,
     figureColors: PropTypes.object,
+    cbMouseDown: PropTypes.func,
+    cbMouseUp: PropTypes.func,
   }
 
+  static defaultProps = {
+    cbMouseClick: () => {},
+    cbMouseMove: () => {},
+    figureColors: {},
+    cbMouseDown: () => {},
+    cbMouseUp: () => {},
+  }
+  cbSetCurrentFigure = (figureId) => {
+    
+    this.props.setCurrentFigureId(figureId);
+  }
 
   getFigure = (figureData) => {
     switch (figureData.figureType) {
@@ -63,8 +76,12 @@ export default class SVGCanvas extends React.Component {
           y1={figureData.y1}
           x2={figureData.x2}
           y2={figureData.y2}
-          id={figureData.figureId}
-          key={figureData.key} />;
+          id={figureData.id}
+          key={figureData.key} 
+          onClick={this.cbSetCurrentFigure}
+          
+          active={this.props.setCurrentFigureId == figureData.id }
+          />;
       case FIGURE_CIRCLE:
         return <CircleSvg
           figureColors={this.state.figureColors}
@@ -72,40 +89,39 @@ export default class SVGCanvas extends React.Component {
           y1={figureData.y1}
           x2={figureData.x2}
           y2={figureData.y2}
-          id={figureData.figureId}
-          key={figureData.key} />;
+          id={figureData.id}
+          
+          key={figureData.key}
+          onClick={this.cbSetCurrentFigure}
+          active={this.props.setCurrentFigureId == figureData.id }
+          />;
 
       case FIGURE_POLYGON:
         return <PolySvg
           figureColors={this.state.figureColors}
           points={figureData.points}
-          id={figureData.figureId}
-          key={figureData.key} />;
+          id={figureData.id}
+          key={figureData.key} 
+          onClick={this.cbSetCurrentFigure}
+          active={this.props.setCurrentFigureId == figureData.id }
+          />;
 
       default:
         return null;
     }
   }
 
-  // addNewFigureToState = (newFigure) => {
-
-  //   let newFiguresList = [...this.state.figures, newFigure]
-  //   let newFigureId = this.state.figureId;
-  //   newFigureId++;
-  //   // добавляем в фигуры новую фигуру и устанавливаем ее как текущую фигуру с которой идет работа
-  //   this.setState({ figures: newFiguresList, firstClick: null, figureId: newFigureId });
-
-  // }
-
+ 
   // при клике и движении мышью отдаем координаты в callback а там уже решат что делать
 
   handleMouseClick = (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     //отслеживаем нажатие ctrl
+    console.log(e.target);
     const ctrlKey = e.ctrlKey || e.metaKey;
     const { leftTopCoords } = this.state;
 
-    this.props.cbMouseClick(e.clientX - leftTopCoords.left, e.clientY - leftTopCoords.top, ctrlKey);
+    this.props.cbMouseClick(Math.floor(e.clientX - leftTopCoords.left), Math.floor(e.clientY - leftTopCoords.top), ctrlKey);
   }
 
   handleMouseMove = (e) => {
@@ -114,8 +130,21 @@ export default class SVGCanvas extends React.Component {
     const ctrlKey = e.ctrlKey || e.metaKey;
     const { leftTopCoords } = this.state;
     
-    this.props.cbMouseMove(e.clientX - leftTopCoords.left, e.clientY - leftTopCoords.top, ctrlKey);
+    this.props.cbMouseMove(Math.floor(e.clientX - leftTopCoords.left), Math.floor(e.clientY - leftTopCoords.top), ctrlKey);
 
+  }
+
+  handleMouseDown = (e) => {
+    console.log(e.target.dataset);
+    const { leftTopCoords } = this.state;
+      //передаем x, y, areaId из dataset для опеределения на какой области клик
+    this.props.cbMouseDown(Math.floor(e.clientX - leftTopCoords.left), Math.floor(e.clientY - leftTopCoords.top), e.target.dataset.areaId);
+  }
+  
+  handleMouseUp = (e) => {
+    const ctrlKey = e.ctrlKey || e.metaKey;
+    const { leftTopCoords } = this.state;
+    this.props.cbMouseUp(Math.floor(e.clientX - leftTopCoords.left), Math.floor(e.clientY - leftTopCoords.top));
   }
 
   setSvgRef = ref => {
@@ -130,10 +159,17 @@ export default class SVGCanvas extends React.Component {
 
     return (
       <div className="svg-canvas" ref={this.setSvgRef}>
-        <svg width={this.props.imageSize.imageWidth} height={this.props.imageSize.imageHeigth} version="1.1" xmlns="http://www.w3.org/2000/svg" onClick={this.handleMouseClick} onMouseMove={this.handleMouseMove}  >
+        <svg width={this.props.imageSize.imageWidth} height={this.props.imageSize.imageHeigth} version="1.1" xmlns="http://www.w3.org/2000/svg" 
+        onClick={this.handleMouseClick} 
+        onMouseMove={this.handleMouseMove}  
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        >
           {figures}
         </svg>
       </div>
     )
   }
 }
+
+

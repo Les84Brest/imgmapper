@@ -134,14 +134,14 @@ class DownloadImage extends Component {
     return (
       <div className="loadimage">
         <div className="dropzone" onDrop={this.handleDrop} onDragOver={this.handlerDragover} style={this.state.dropzoneStyle}>
-          {(!this.state.imageData) && <div className="dropzone__text" >Drag an image here</div>}
+          {(!this.state.imageData) && <div className="dropzone__text" >Drag image here</div>}
         </div>
         <p className="loadimage__divider-text">or</p>
         <div className="input__wrapper">
           <input type="file" name="file" id="input__file" className="input input__file" onChange={this.handleImageByDialog} />
           <label htmlFor="input__file" className="input__file-button" >
             <span><Icon name="download" size={1.5} color="#5f4496" /></span>
-            <span className="input__file-button-text">Select an image</span>
+            <span className="input__file-button-text">Select image</span>
           </label>
         </div>
         {/* URL c которого можно загрузить картинку */}

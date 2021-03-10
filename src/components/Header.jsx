@@ -87,7 +87,25 @@ const Header = ({ mapName, figuresList, imageName, }) => {
     <div className='work-img__header'>
       {(showModal) && <Popup onClose={cbPopupClose} popupTitle="Image map code" >
         {mapCode}
-
+        <br/>
+        <Button className="btn-solid" onClick={() =>{
+          const clipboardText = mapCode.reduce((prev, item) => {
+            console.log('prev - ', prev, ' cur - ', item);
+            if(typeof item == 'string'){
+              return  prev + item + '\n';
+            }
+            return prev;
+          }, '');
+          navigator.clipboard.writeText(clipboardText)
+          .then(() => {
+            
+          })
+          .catch(err => {
+            console.log('Couldn\'t copy code to clipboard', err);
+          });
+        }}>
+          Copy code
+            </Button>
       </Popup>
       }
 

@@ -18,6 +18,8 @@ export const withDrawPoly = (svgProps) => SVGCanvas => {
             cbMouseMove: this.cbMouseMove,
             imageSize: svgProps.imageSize,
             figureColors: svgProps.figureColors,
+            setCurrentFigureId: svgProps.setCurrentFigureId, // устанавливаем по клику id текущей фигуры
+            currentFigureId: svgProps.currentFigureId,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа

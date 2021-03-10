@@ -35,3 +35,5 @@ export const MOVE_TOOL = 'MOVE_TOOL';
 export const MODE_SHOW = 'MODE_SHOW';
 export const MODE_DRAWING = 'MODE_DRAWING'; 
 export const MODE_EDIT = 'MODE_EDIT'; 
+export const MODE_MOVE_FIGURE = 'MODE_MOVE_FIGURE'; 
+export const MODE_RESIZE_FIGURE = 'MODE_RESIZE_FIGURE'; 
