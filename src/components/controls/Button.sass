@@ -12,7 +12,12 @@
   cursor: pointer
   transition: all 0.3s ease
   font-size: 15px
-  
+  &.disabled
+    cursor: default
+    background-color: lighten($main-dark, 25%)
+    &:hover
+      background-color: lighten($main-dark, 25%)
+      color: $accent
   &-solid, &-bordered
     transition: all 0.3s ease
   &-solid

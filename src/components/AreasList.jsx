@@ -50,15 +50,21 @@ class AreasList extends Component {
       const element = this.state.figuresList[i];
 
       if (element.id === id) { // элемент для удаления найден. Анализируем его окружение
-
-        if (i == 0) {// первый элемент
-          nextFocusElement = this.state.figuresList[i + 1].id;
+        if(this.state.currentFigureId !== id){
+          console.log('curent id ', this.state.currentFigureId);
+          nextFocusElement = this.state.currentFigureId;
           break;
+        }else{
+          if (i == 0) {// первый элемент
+            nextFocusElement = this.state.figuresList[i + 1].id;
+            break;
+          }
+  
+          nextFocusElement = this.state.figuresList[i - 1].id;
+          break;
+  
         }
-
-        nextFocusElement = this.state.figuresList[i - 1].id;
-        break;
-
+        
       }
 
 

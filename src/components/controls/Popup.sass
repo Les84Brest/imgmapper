@@ -10,6 +10,8 @@
     border-radius: 5px
     overflow: hidden
     position: relative
+    opacity: 0
+    transition: opacity .5s ease-out
   &__title
     font-weight: 700
     display: block
@@ -27,3 +29,6 @@
   &__content
     overflow-y: scroll
     padding: 5px
+//animation
+.popup__window.popup__show
+  opacity: 1

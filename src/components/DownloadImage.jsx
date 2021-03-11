@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 //https://content2.onliner.by/catalog/device/main/b2b7550056f1f3e953212c79ce65028e.jpeg
 //css import
 import './DownloadImage.sass';
+import Button from "./controls/Button";
 
 class DownloadImage extends Component {
 
@@ -130,7 +131,10 @@ class DownloadImage extends Component {
   }
   
   render() {
-
+    let btnDisabled = false;
+    if(this.state.imageName == null || this.state.mapName == null){
+      btnDisabled = true;
+    } 
     return (
       <div className="loadimage">
         <div className="dropzone" onDrop={this.handleDrop} onDragOver={this.handlerDragover} style={this.state.dropzoneStyle}>
@@ -160,9 +164,10 @@ class DownloadImage extends Component {
           cbOnChange={this.cbSetMapName}
           key="map_name"
         />
-        <button className="btn-solid" onClick={this.handlerSaveImageData} >
-          OK
-				</button>
+        <p className='loadimage__info-text'>You must specify the name of the image map</p>
+        <div className="loadimage__buttons">
+        <Button onClick={this.handlerSaveImageData} className='btn-solid' disabled={btnDisabled}>OK</Button>
+        </div>
       </div>
     )
   }

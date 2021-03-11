@@ -12,6 +12,7 @@ const Button = ({children, onClick, className, disabled, active, ...attrs}) => {
     'btn',
     className,
     {active},
+    {disabled}
   );
 
   const onClickAction = e => {

@@ -111,7 +111,8 @@ const Header = ({ mapName, figuresList, imageName, }) => {
 
       <div className="map-name">{mapName}</div>
       <div className="buttons-wrap">
-        <Button href="/settings" className="btn-bordered" onClick={() => { console.log("Settings"); }}><Icon name="settings" size={1.5} /> Settings</Button>
+        {/* todo кнопка настроек приложения */}
+        {/*<Button href="/settings" className="btn-bordered" onClick={() => { console.log("Settings"); }}><Icon name="settings" size={1.5} /> Settings</Button>*/}
         <Button className="btn-solid" onClick={getMap}>
           <Icon name="download" size={1.5} color="#ffe3b5" />
                 Get code

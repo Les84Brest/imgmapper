@@ -12,7 +12,7 @@ import { changeTool } from '../store/svgcanvas/actions';
 
 class MainToolbar extends React.PureComponent {
 
-  
+
   constructor(props) {
     super(props);
     // tools icons list
@@ -24,23 +24,23 @@ class MainToolbar extends React.PureComponent {
     };
 
   }
-  
+
 
   cbSelectTool = (id) => {
-    
-  let activeIndex = this.state.toolsInfo.findIndex(item =>  item.toolId == id );
 
-  let activeTool = {... this.state.toolsInfo[activeIndex]};
-  activeTool.active = true;
-  let tools = this.state.toolsInfo.map(item => {
-    item.active = false;
-    return item;
-  });
+    let activeIndex = this.state.toolsInfo.findIndex(item => item.toolId == id);
 
-  tools.splice(activeIndex, 1 ,activeTool );
-  this.props.changeTool(activeTool.name);
-  this.setState({ toolsInfo: tools, currentTool: activeTool.name });
-    
+    let activeTool = { ... this.state.toolsInfo[activeIndex] };
+    activeTool.active = true;
+    let tools = this.state.toolsInfo.map(item => {
+      item.active = false;
+      return item;
+    });
+
+    tools.splice(activeIndex, 1, activeTool);
+    this.props.changeTool(activeTool.name);
+    this.setState({ toolsInfo: tools, currentTool: activeTool.name });
+
 
 
   }
@@ -56,17 +56,17 @@ class MainToolbar extends React.PureComponent {
     ),
 
     changeTool: PropTypes.func,
-
+    imageName: PropTypes.string,
   }
 
 
 
 
   render() {
-    
+
     let toolList = [];
     this.state.toolsInfo.forEach(item => {
-     
+
       toolList.push(
         <ToolIcon
           key={item.toolId}
@@ -79,7 +79,7 @@ class MainToolbar extends React.PureComponent {
       );
     })
 
-console.log('ToolBar render');
+    console.log('ToolBar render');
 
     return (
       <div className="workplace__toolbar toolbar">
@@ -87,9 +87,11 @@ console.log('ToolBar render');
           <a href="https://github.com/Les84Brest/imgmapper" target="blank"><Image src="../images/imgmapperLogo.png" /></a>
         </div>
         <nav className="tools">
-          <ul className="tools-items">
-            {toolList}
-          </ul>
+          {(this.props.imageName !== null) &&
+            <ul className="tools-items">
+              {toolList}
+            </ul>
+          }
         </nav>
 
       </div>

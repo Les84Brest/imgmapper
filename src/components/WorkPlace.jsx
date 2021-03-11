@@ -1,6 +1,5 @@
 import React from 'react';
-import MainToolbar from './MainToolbar';
-import Header from './Header';
+
 //css import
 import './WorkPlace.sass';
 
@@ -13,7 +12,9 @@ const WorkPlace = () => {
 
   // const toolsData = require('../toolsData.json');
 
-
+  window.onbeforeunload = () => {
+    return 'Refreshing the page will result in data loss. Proceed?';
+  }
   return (
     <div className="imgmapper__workplace">
       <MainToolbarContainer />
