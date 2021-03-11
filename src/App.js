@@ -10,7 +10,7 @@ const store = createStore(rootReducer, /* preloadedState, */
 
 function App() {
   return (
-    <div className="imgmapper">
+    <div className="imgmapper" >
       <Provider store={store}>
         {/* header toolbar area to work with image */}
         <WorkPlace />
