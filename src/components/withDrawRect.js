@@ -20,6 +20,7 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
             figureColors: svgProps.figureColors,
             setCurrentFigureId: svgProps.setCurrentFigureId, // устанавливаем по клику id текущей фигуры
             currentFigureId: svgProps.currentFigureId,
+            currentTool: svgProps.currentTool,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
@@ -64,11 +65,6 @@ export const withDrawRect = (svgProps) => SVGCanvas => {
 
       cbMouseMove = (x, y) => {
         // todo организовать плавное изменение размеров
-
-
-        
-         console.log('MouseMove x ', x, 'y ', y);
-
 
         // // для наглядности что рисуем и где отрисовываем фигуры на mousemove
         // // если флаг startDrawing true - рисование начато никаких фигур еще нет. Добавляем фигуру

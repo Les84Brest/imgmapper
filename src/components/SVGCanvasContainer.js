@@ -22,16 +22,16 @@ class SVGCanvasContainer extends React.Component{
    
     return (
       <Fragment>
-        {(this.props.curentTool === RECT_TOOL) &&
+        {(this.props.currentTool === RECT_TOOL) &&
         <DrawRectCanvas />
         }
-        {(this.props.curentTool === CIRCLE_TOOL) &&
+        {(this.props.currentTool === CIRCLE_TOOL) &&
         <DrawCircleCanvas />
         }
-        {(this.props.curentTool === POLY_TOOL) &&
+        {(this.props.currentTool === POLY_TOOL) &&
         <DrawPolyCanvas />
         }
-        {(this.props.curentTool === MOVE_TOOL) &&
+        {(this.props.currentTool === MOVE_TOOL) &&
         <MoveCanvas />
         }
         
@@ -45,7 +45,7 @@ const mapStateToProps = state => {
     figureId: state.svgCanvas.figureId,
     currentFigureId: state.svgCanvas.currentFigureId,
     figuresList:  state.svgCanvas.figuresList,
-    curentTool: state.svgCanvas.currentTool,
+    currentTool: state.svgCanvas.currentTool,
     imageSize: state.mapImage.imageSize,
     figureColors: state.settings.figureColors,
   }

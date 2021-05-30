@@ -1,10 +1,11 @@
 /* eslint-disable no-unreachable */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FIGURE_CIRCLE, FIGURE_RECT, FIGURE_POLYGON, MODE_DRAWING, MODE_EDIT } from '../constants';
+import { FIGURE_CIRCLE, FIGURE_RECT, FIGURE_POLYGON, MOVE_TOOL, CIRCLE_TOOL, RECT_TOOL, POLY_TOOL, } from '../constants';
 import RectSvg from './RectSvg';
 import PolySvg from './PolySvg';
 import CircleSvg from './CircleSvg';
+import ClassNames from "classnames";
 
 
 //css import
@@ -16,8 +17,13 @@ export default class SVGCanvas extends React.Component {
   constructor(props) {
     super(props);
 
+    // классы
+    let classes = ClassNames('svg-canvas', this.getToolCursor(props.currentTool))
+
+
     this.state = {
       workMode: props.workMode,
+      classes,
       firstClick: null,
       figureId: props.figureId,
       figures: [],
@@ -46,8 +52,9 @@ export default class SVGCanvas extends React.Component {
   /**Prop Types  */
   static propTypes = {
     workMode: PropTypes.string,
+    currentTool: PropTypes.string,
     figuresList: PropTypes.array,
-    curentTool: PropTypes.string,
+    currentTool: PropTypes.string,
     cbMouseClick: PropTypes.func,
     cbMouseMove: PropTypes.func,
     figureColors: PropTypes.object,
@@ -61,6 +68,7 @@ export default class SVGCanvas extends React.Component {
     figureColors: {},
     cbMouseDown: () => {},
     cbMouseUp: () => {},
+    currentTool: '',
   }
   cbSetCurrentFigure = (figureId) => {
     
@@ -111,13 +119,31 @@ export default class SVGCanvas extends React.Component {
     }
   }
 
- 
+  getToolCursor = (tool) => {
+    console.log(tool);
+    switch(tool){
+      case MOVE_TOOL:
+        return 'cursor-move-tool';
+        break;
+      case CIRCLE_TOOL:
+        return 'cursor-circle-tool';
+        break;
+      case RECT_TOOL:
+        return 'cursor-rect-tool';
+        break;
+      case POLY_TOOL:
+        return 'cursor-poly-tool';
+        break;
+      default: 
+        return '';
+    }
+  }
   // при клике и движении мышью отдаем координаты в callback а там уже решат что делать
 
   handleMouseClick = (e) => {
     //e.stopPropagation();
     //отслеживаем нажатие ctrl
-    console.log(e.target);
+    
     const ctrlKey = e.ctrlKey || e.metaKey;
     const { leftTopCoords } = this.state;
 
@@ -135,7 +161,7 @@ export default class SVGCanvas extends React.Component {
   }
 
   handleMouseDown = (e) => {
-    console.log(e.target.dataset);
+   
     const { leftTopCoords } = this.state;
       //передаем x, y, areaId из dataset для опеределения на какой области клик
     this.props.cbMouseDown(Math.floor(e.clientX - leftTopCoords.left), Math.floor(e.clientY - leftTopCoords.top), e.target.dataset.areaId);
@@ -156,9 +182,9 @@ export default class SVGCanvas extends React.Component {
     const figures = this.props.figuresList.map(figure => {
       return this.getFigure(figure);
     });
-
+    
     return (
-      <div className="svg-canvas" ref={this.setSvgRef}>
+      <div className={this.state.classes} ref={this.setSvgRef}>
         <svg width={this.props.imageSize.imageWidth} height={this.props.imageSize.imageHeigth} version="1.1" xmlns="http://www.w3.org/2000/svg" 
         onClick={this.handleMouseClick} 
         onMouseMove={this.handleMouseMove}  

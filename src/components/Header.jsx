@@ -18,23 +18,23 @@ const Header = ({ mapName, figuresList, imageName, }) => {
   // получаем атрибуты поля
   const getAreaAtributes = item => {
     let attributes = '';
-    if(item.href !== ''){
-      attributes += 'href="' + item.href +'" ';
+    if (item.href !== '') {
+      attributes += 'href="' + item.href + '" ';
     }
 
-    if(item.alt !== ''){
-      attributes += 'alt="' + item.alt +'" ';
+    if (item.alt !== '') {
+      attributes += 'alt="' + item.alt + '" ';
     }
 
-    if(item.linkTarget !== ''){
-      attributes += 'target="' + item.linkTarget +'" ';
+    if (item.linkTarget !== '') {
+      attributes += 'target="' + item.linkTarget + '" ';
     }
 
     return attributes;
   }
 
   const getMap = () => {
-    
+
     let mapCode = []
     mapCode.push(`<img src="${imageName}" alt="" usemap="#${mapName}" />`);
     mapCode.push(<br />);
@@ -75,7 +75,7 @@ const Header = ({ mapName, figuresList, imageName, }) => {
   }
 
   const cbPopupClose = () => {
-    
+
     setShowModal(false);
   }
 
@@ -86,26 +86,29 @@ const Header = ({ mapName, figuresList, imageName, }) => {
   return (
     <div className='work-img__header'>
       {(showModal) && <Popup onClose={cbPopupClose} popupTitle="Image map code" >
-        {mapCode}
-        <br/>
-        <Button className="btn-solid" onClick={() =>{
-          const clipboardText = mapCode.reduce((prev, item) => {
-            console.log('prev - ', prev, ' cur - ', item);
-            if(typeof item == 'string'){
-              return  prev + item + '\n';
-            }
-            return prev;
-          }, '');
-          navigator.clipboard.writeText(clipboardText)
-          .then(() => {
-            
-          })
-          .catch(err => {
-            console.log('Couldn\'t copy code to clipboard', err);
-          });
-        }}>
-          Copy code
+        <div className="code-wrap">
+          <div className="text-wrap">{mapCode}</div>
+          <div className="btn-wrap">
+          <Button className="btn-text" onClick={() => {
+            const clipboardText = mapCode.reduce((prev, item) => {
+              
+              if (typeof item == 'string') {
+                return prev + item + '\n';
+              }
+              return prev;
+            }, '');
+            navigator.clipboard.writeText(clipboardText)
+              .then(() => {
+
+              })
+              .catch(err => {
+                console.log('Couldn\'t copy code to clipboard', err);
+              });
+          }}>
+            Copy code
             </Button>
+            </div>
+        </div>
       </Popup>
       }
 

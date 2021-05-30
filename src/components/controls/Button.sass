@@ -1,5 +1,7 @@
 @import '../../sass/_vars'
 .btn
+  max-width: 150px
+  text-align: center
   padding:
     top: 3px
     bottom: 3px
@@ -18,7 +20,7 @@
     &:hover
       background-color: lighten($main-dark, 25%)
       color: $accent
-  &-solid, &-bordered
+  &-solid, &-bordered, &-text
     transition: all 0.3s ease
   &-solid
     background-color: $main-dark
@@ -28,6 +30,15 @@
     &:hover
       background-color: #8467be
       color: #dba143
+  &-text
+    margin: 0
+    text-align: center
+    text-decoration: none
+    justify-content: center
+    background-color: $main-dark
+    border: none
+    font-weight: 700
+    color: $accent
   &-bordered
     border: 3px solid $main-dark
     background: transparent

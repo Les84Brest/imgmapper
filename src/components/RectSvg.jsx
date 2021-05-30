@@ -59,8 +59,8 @@ class RectSvg extends React.PureComponent {
         rectCoords = {
           x: x2,
           y: y2,
-          width: x2 - x1,
-          heigth: y2 - y1,
+          width: x1 - x2,
+          heigth: y1 - y2,
         }
       } else { //x2>x1
         rectCoords = {

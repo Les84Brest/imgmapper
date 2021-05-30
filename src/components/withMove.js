@@ -24,6 +24,7 @@ export const withMove = (svgProps) => SVGCanvas => {
             figureColors: svgProps.figureColors,
             setCurrentFigureId: svgProps.setCurrentFigureId, // устанавливаем по клику id текущей фигуры
             currentFigureId: svgProps.currentFigureId,
+            currentTool: svgProps.currentTool,тз
           },
           figureId: svgProps.figureId,
           firstPoint: null, //первая координата x,y

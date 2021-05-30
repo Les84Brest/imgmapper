@@ -20,6 +20,7 @@ export const withDrawPoly = (svgProps) => SVGCanvas => {
             figureColors: svgProps.figureColors,
             setCurrentFigureId: svgProps.setCurrentFigureId, // устанавливаем по клику id текущей фигуры
             currentFigureId: svgProps.currentFigureId,
+            currentTool: svgProps.currentTool,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа

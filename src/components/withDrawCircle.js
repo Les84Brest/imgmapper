@@ -18,7 +18,7 @@ export const withDrawCircle = (svgProps) => SVGCanvas => {
             cbMouseMove: this.cbMouseMove,
             imageSize: svgProps.imageSize,
             figureColors: svgProps.figureColors,
-            
+            currentTool: svgProps.currentTool,
           },
           figureId: svgProps.figureId,
           curentFigureId: null, // id  фигуры, с которой идет работа
